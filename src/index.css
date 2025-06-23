@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+@plugin "daisyui";
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@layer components {
+  /* Responsive custom heading class */
+  .custom-heading {
+    @apply text-xl md:text-2xl lg:text-3xl font-medium leading-tight;
+  }
+
+  /* Responsive custom paragraph class */
+  .custom-paragraph {
+    @apply text-xs md:text-sm lg:text-sm font-normal leading-relaxed;
+  }
+}
