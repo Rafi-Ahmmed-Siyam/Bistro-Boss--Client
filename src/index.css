@@ -23,6 +23,13 @@
   font-style: normal;
 }
 
+.text-dark {
+  color: #151515;
+}
+.text-para {
+  color: #737373;
+}
+
 /* .carousel .control-dots {
   display: flex;
   justify-content: center;
