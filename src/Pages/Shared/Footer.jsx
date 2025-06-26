@@ -5,7 +5,7 @@ import { FaXTwitter } from "react-icons/fa6";
 const Footer = () => {
    return (
       <div>
-         <section>
+         <section className='mt-5'>
             {/* Main div */}
             <div className=' flex-none md:flex lg:flex  items-center'>
                {/* 1st div */}

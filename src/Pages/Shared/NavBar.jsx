@@ -1,24 +1,23 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
 
-   // fixed z -50
    return (
       <div>
          <div className="navbar text-white shadow-sm px-2 md:px-2 lg:px-5 bg-black/50 container fixed z-50">
             <div className="flex-1 ">
-               <p className="font-extrabold text-xl ">BISTRO BOSS</p>
-               <p className='hidden md:block lg:block font-black tracking-widest font-cinzel mt-0.5'>RESTURENT</p>
+               <NavLink to={'/'} className="font-semibold md:font-bold lg:font-extrabold text-base md:text-lg lg:text-xl ">BISTRO BOSS</NavLink>
+               <p className='hidden md:block lg:block font-semibold text-base tracking-widest font-cinzel mt-0.5'>RESTURENT</p>
             </div>
             <div className="flex-none">
                <ul className="menu menu-horizontal px-1">
 
-
-                  <li ><a>Home</a></li>
-                  <li ><a>Contact Us</a></li>
-                  <li className='hidden md:hidden lg:block'><a>Our Menu</a></li>
-                  <li className='hidden md:hidden lg:block'><a>Our Shop</a></li>
-                  {/* <li ><a>Sign in</a></li> */}
+                  <li><NavLink className={({ isActive }) => isActive ? "text-[#EEFF25] font-medium" : "text-white font-normal"}>Home</NavLink></li>
+                  <li><NavLink className={({ isActive }) => isActive ? "text-[#EEFF25] font-medium" : "text-white font-normal"}>Contact Us</NavLink></li>
+                  <li className='hidden md:hidden lg:block'><NavLink>Our Menu</NavLink></li>
+                  <li className='hidden md:hidden lg:block'><NavLink>Our Shop</NavLink></li>
+                  <li><NavLink>Sign in</NavLink></li>
 
                   <div className="dropdown dropdown-end ">
                      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -31,10 +30,10 @@ const NavBar = () => {
                      <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black">
-                        <li><a>Dashboard</a></li>
-                        <li className='block md:block lg:hidden'><a>Our Menu</a></li>
-                        <li className='block md:block lg:hidden'><a>Our Shop</a></li>
-                        <li><a>Sign Out</a></li>
+                        <li><NavLink>Dashboard</NavLink></li>
+                        <li className='block md:block lg:hidden'><NavLink>Our Menu</NavLink></li>
+                        <li className='block md:block lg:hidden'><NavLink>Our Shop</NavLink></li>
+                        <li><NavLink>Sign Out</NavLink></li>
                      </ul>
                   </div>
 

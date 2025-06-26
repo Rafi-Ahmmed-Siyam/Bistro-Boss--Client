@@ -22,22 +22,22 @@ const Banner = () => {
 
          >
             <div>
-               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[730px]' src={img1} alt="Slide 1" />
+               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[700px]' src={img1} alt="Slide 1" />
             </div>
             <div>
-               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[730px]' src={img2} alt="Slide 1" />
+               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[700px]' src={img2} alt="Slide 1" />
             </div>
             <div>
-               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[730px]' src={img3} alt="Slide 1" />
+               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[700px]' src={img3} alt="Slide 1" />
             </div>
             <div>
-               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[730px]' src={img4} alt="Slide 1" />
+               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[700px]' src={img4} alt="Slide 1" />
             </div>
             <div>
-               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[730px]' src={img5} alt="Slide 1" />
+               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[700px]' src={img5} alt="Slide 1" />
             </div>
             <div>
-               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[730px]' src={img6} alt="Slide 1" />
+               <img className='max-h-[350px] md:max-h-[730px] lg:max-h-[700px]' src={img6} alt="Slide 1" />
             </div>
 
          </Carousel>
