@@ -4,15 +4,15 @@ import bgImg from '../../assets/home/chef-service.jpg'
 
 const DiscoverBistroBoss = () => {
    return (
-      <section className='mt-24 hidden md:hidden lg:block'>
+      <section className='mt-24 hidden md:hidden lg:block '>
          <div
             style={{
-               backgroundImage: `url(${bgImg})`,
-               backgroundSize: "cover",
-               backgroundPosition: "center",
-               backgroundRepeat: "no-repeat",
+               backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%), url(${bgImg})`,
+               backgroundSize: 'cover',
+               backgroundPosition: 'center',
+               backgroundRepeat: 'no-repeat',
             }}
-            className=" h-[500px] max-w-7xl mx-auto flex items-center justify-center "
+            className=" h-[500px] max-w-7xl mx-auto flex items-center justify-center bg-fixed "
          >
             <div className='bg-white text-center py-20 px-16'>
                <h2 className='font-cinzel font-semibold mb-2 text-2xl  text-black'>Bistro Boss</h2>

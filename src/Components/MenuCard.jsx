@@ -12,7 +12,7 @@ const MenuCard = ({ item }) => {
             {/* Text div */}
             <div className=''>
                <h2 className='font-cinzel text-lg md:text-xl lg:text-xl font-medium text-dark flex '>{name} <span className='hidden md:block lg:block'>------------</span></h2>
-               <p className='w-auto md:max-w-[443px] lg:max-w-[443px] text-para mt-2 text-base font-sm'>{recipe}</p>
+               <p className='w-auto md:max-w-[443px] lg:max-w-[443px] text-para mt-1 lg:mt-2 text-sm lg:text-base'>{recipe}</p>
             </div>
             {/* Price div */}
             <div className=''>
