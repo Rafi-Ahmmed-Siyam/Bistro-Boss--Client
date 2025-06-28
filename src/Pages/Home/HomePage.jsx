@@ -7,10 +7,12 @@ import PopularMenu from './PopularMenu';
 import ChefRecomends from './ChefRecomends';
 import Featured from './Featured';
 import Testimonials from './Testimonials';
+import { Helmet } from 'react-helmet-async';
 
 const HomePage = () => {
    return (
       <div>
+         <Helmet><title>Bistro Boss | Home</title></Helmet>
          <Banner />
          <Category />
          <DiscoverBistroBoss />

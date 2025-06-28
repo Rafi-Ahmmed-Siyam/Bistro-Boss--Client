@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
+   const linkStyle = ({ isActive }) =>
+      isActive ? "text-[#EEFF25] font-medium" : "text-white font-normal";
 
    return (
       <div>
@@ -13,9 +15,12 @@ const NavBar = () => {
             <div className="flex-none">
                <ul className="menu menu-horizontal px-1">
 
-                  <li><NavLink className={({ isActive }) => isActive ? "text-[#EEFF25] font-medium" : "text-white font-normal"}>Home</NavLink></li>
-                  <li><NavLink className={({ isActive }) => isActive ? "text-[#EEFF25] font-medium" : "text-white font-normal"}>Contact Us</NavLink></li>
-                  <li className='hidden md:hidden lg:block'><NavLink>Our Menu</NavLink></li>
+                  <li><NavLink to={'/'} className={linkStyle}>Home</NavLink></li>
+
+                  <li><NavLink className={linkStyle}>Contact Us</NavLink></li>
+
+                  <li className='hidden md:hidden lg:block' ><NavLink to={'/menu'} className={linkStyle}>Our Menu</NavLink></li>
+
                   <li className='hidden md:hidden lg:block'><NavLink>Our Shop</NavLink></li>
                   <li><NavLink>Sign in</NavLink></li>
 

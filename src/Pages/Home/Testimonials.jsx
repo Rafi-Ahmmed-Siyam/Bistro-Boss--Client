@@ -20,7 +20,6 @@ const Testimonials = () => {
             setReviews(result)
          })
    }, [])
-   console.log(reviews)
 
    return (
       <section className='mt-16 lg:mt-28 max-w-7xl mx-auto'>

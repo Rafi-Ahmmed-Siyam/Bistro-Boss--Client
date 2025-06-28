@@ -7,7 +7,7 @@ const MenuCard = ({ item }) => {
          <div className='flex gap-x-5 items-start'>
             {/* img Div */}
             <div className=''>
-               <img className='border-2 border-[#E8E8E8] rounded-bl-full rounded-tl-none rounded-tr-full rounded-br-full max-w-[118px]' src={image} alt="" />
+               <img className='border-2 border-[#E8E8E8] rounded-bl-full rounded-tl-none rounded-tr-full rounded-br-full max-w-[118px]' src={image} alt="food Image" />
             </div>
             {/* Text div */}
             <div className=''>
