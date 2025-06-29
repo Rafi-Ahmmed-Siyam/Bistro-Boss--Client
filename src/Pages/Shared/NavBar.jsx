@@ -21,7 +21,7 @@ const NavBar = () => {
 
                   <li className='hidden md:hidden lg:block' ><NavLink to={'/menu'} className={linkStyle}>Our Menu</NavLink></li>
 
-                  <li className='hidden md:hidden lg:block'><NavLink>Our Shop</NavLink></li>
+                  <li className='hidden md:hidden lg:block'><NavLink className={linkStyle} to={'/order'}>Our Shop</NavLink></li>
                   <li><NavLink>Sign in</NavLink></li>
 
                   <div className="dropdown dropdown-end ">
@@ -36,8 +36,8 @@ const NavBar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black">
                         <li><NavLink>Dashboard</NavLink></li>
-                        <li className='block md:block lg:hidden'><NavLink>Our Menu</NavLink></li>
-                        <li className='block md:block lg:hidden'><NavLink>Our Shop</NavLink></li>
+                        <li className='block md:block lg:hidden'><NavLink to={'/menu'}>Our Menu</NavLink></li>
+                        <li className='block md:block lg:hidden'><NavLink to={'/order'} >Our Shop</NavLink></li>
                         <li><NavLink>Sign Out</NavLink></li>
                      </ul>
                   </div>

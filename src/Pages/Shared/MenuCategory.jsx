@@ -1,11 +1,13 @@
 import React from 'react';
 import SectionTitle from '../../Components/SectionTitle';
 import MenuCard from '../../Components/MenuCard';
+import { Link } from 'react-router-dom';
 
-const MenuCategory = ({ menuData, menuHeading, menuSubHeding, btnContent, hiddenClass }) => {
+const MenuCategory = ({ menuData, menuHeading, menuSubHeding, btnContent, hiddenClass, category }) => {
+
    return (
       <div>
-         <div className='mt-20 max-w-7xl mx-auto px-3 md:px-0 lg:px-0'>
+         <div className='mt-20 max-w-6xl mx-auto px-3 md:px-0 lg:px-0'>
             <div className={`${hiddenClass}`}>
                <SectionTitle subHeading={menuHeading} heading={menuSubHeding} />
             </div>

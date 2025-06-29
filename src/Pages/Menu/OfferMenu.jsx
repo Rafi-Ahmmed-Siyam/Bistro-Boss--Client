@@ -8,7 +8,7 @@ const OfferMenu = () => {
 
    return (
       <div>
-         <MenuCategory btnContent={"ORDER YOUR FAVOURITE FOOD"} menuHeading={"Don't miss "} menuSubHeding={"TODAY'S OFFER"} menuData={offerMenu} />
+         <MenuCategory category={"salad"} btnContent={"ORDER YOUR FAVOURITE FOOD"} menuHeading={"Don't miss "} menuSubHeding={"TODAY'S OFFER"} menuData={offerMenu} />
       </div>
    );
 };

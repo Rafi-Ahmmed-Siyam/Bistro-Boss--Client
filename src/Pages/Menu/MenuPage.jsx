@@ -18,7 +18,7 @@ const MenuPage = () => {
          <Cover
             hedingTextSize={"text-3xl md:text-6xl lg:text-7xl"}
             paraTextSize={'text-base md:text-base lg:text-lg'}
-            height={'h-[550px] md:h-[700px] lg:h-[600px]'}
+            height={'h-[550px] md:h-[700px] lg:h-[700px]'}
             bgImg={coverBg} title={"OUR MENU"}
             subTitle={"Would you like to try a dish?"} />
 
@@ -26,25 +26,25 @@ const MenuPage = () => {
          <section className='mt-24'>
             <OfferMenu />
          </section>
+         
          {/* Desserts */}
          <section className='mt-11'>
             <DessertsMenu />
-
          </section>
+
          {/* Pizza */}
          <section className='mt-11'>
             <PizzaMenu />
-
          </section>
+
          {/* Salads */}
          <section className='mt-11'>
             <SaladsMenu />
-
          </section>
+
          {/* Soups */}
          <section className='mt-11'>
             <SoupsMenu />
-
          </section>
       </div>
    );
