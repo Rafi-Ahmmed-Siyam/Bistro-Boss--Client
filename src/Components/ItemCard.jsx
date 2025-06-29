@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ItemCard = ({ foodItem }) => {
    const { name, recipe, image, category, price } = foodItem || {};
@@ -6,7 +7,7 @@ const ItemCard = ({ foodItem }) => {
       <div className="rounded overflow-hidden border border-slate-200 pb-6 flex flex-col justify-between h-full bg-[#F3F3F3] relative">
          {/* Image */}
          <img
-            className="w-full min-h-[200px] lg:min-h-[300px]"
+            className="w-full min-h-[200px] lg:min-h-[250px]"
             src={image || "https://i.ibb.co/ycWFjBZD/soup-bg.jpg"}
             alt={name}
          />

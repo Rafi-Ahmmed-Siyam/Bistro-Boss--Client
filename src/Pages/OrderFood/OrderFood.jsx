@@ -2,12 +2,15 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import shopImg from '../../assets/shop/banner2.jpg'
 import Cover from '../Shared/Cover';
+import useMenu from '../../Hooks/useMenu';
+import ColorTabs from './TabMenu';
 import TabMenu from './TabMenu';
 
 
-
-
 const OrderFood = () => {
+   const { menu } = useMenu();
+   console.log(menu)
+
    return (
       <div>
          <Helmet><title>Bistro Boss | Shop</title></Helmet>

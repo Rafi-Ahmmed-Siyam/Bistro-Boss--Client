@@ -1,5 +1,6 @@
 
 import { Parallax } from 'react-parallax';
+
 const Cover = ({ bgImg, title, containerClass, subTitle, height, hedingTextSize, paraTextSize }) => {
    return (
       <Parallax

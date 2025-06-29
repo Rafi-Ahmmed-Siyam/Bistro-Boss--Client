@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import useMenu from '../../Hooks/useMenu';
 import ItemCard from '../../Components/ItemCard';
+import { useParams } from 'react-router-dom';
 
 const tabStyles = {
    textTransform: 'uppercase',
@@ -23,16 +24,26 @@ const tabStyles = {
    },
 };
 
-const ColorTabs = () => {
+const TabMenu = () => {
+   const { category } = useParams();
    const { menu } = useMenu();
-   const [value, setValue] = React.useState('salad');
+   const [value, setValue] = useState(category || 'salad');
+
+
+   const filteredItems = menu.filter(item => item.category === value);
+
+   useEffect(() => {
+      if (category) {
+         setValue(category);
+      } else {
+         setValue('salad')
+      }
+   }, [category])
 
    const handleChange = (event, newValue) => {
       setValue(newValue);
    };
 
-   const filteredItems = menu.filter(item => item.category === value);
-   // console.log(filteredItems)
    return (
       <Box sx={{ width: '100%' }}>
          <div className='flex justify-center items-center'>
@@ -54,7 +65,7 @@ const ColorTabs = () => {
 
 
          </div>
-         <div className='mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center justify-items-center gap-5 max-w-7xl mx-auto sm:px-3.5 md:px-0 lg:px-0'>
+         <div className='mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center justify-items-center gap-5 max-w-7xl mx-auto px-3.5 md:px-0 lg:px-0'>
             {
                filteredItems.map(foodItem => <ItemCard key={foodItem._id} foodItem={foodItem} />)
             }
@@ -63,4 +74,4 @@ const ColorTabs = () => {
    );
 };
 
-export default ColorTabs;
+export default TabMenu;

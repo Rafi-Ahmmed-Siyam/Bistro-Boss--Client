@@ -19,7 +19,7 @@ const MenuCategory = ({ menuData, menuHeading, menuSubHeding, btnContent, hidden
 
             </div>
             <div className='mt-12 flex justify-center items-center text-[#1F2937]'>
-               <button className='border-b-2 pb-3 px-4 uppercase rounded-b-lg text-sm cursor-pointer font-semibold hover:text-yellow-500 active:scale-95'>{btnContent}</button>
+               <Link to={`/order/${category}`} className='border-b-2 pb-3 px-4 uppercase rounded-b-lg text-sm cursor-pointer font-semibold hover:text-yellow-500 active:scale-95'>{btnContent}</Link>
             </div>
          </div>
       </div>
