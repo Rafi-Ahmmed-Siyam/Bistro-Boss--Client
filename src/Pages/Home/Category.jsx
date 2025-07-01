@@ -53,14 +53,14 @@ const Category = () => {
                    text-gray-50 font-medium absolute bottom-3 left-1/2 transform -translate-x-1/2'>Salads</h2>
                </SwiperSlide>
                <SwiperSlide className='relative'>
-                  <img src={slide2} alt="slide image" />
+                  <img src={slide3} alt="slide image" />
                   <h2
                      className='font-cinzel text-xl text-shadow-sm uppercase text-center 
                    text-gray-50 font-medium absolute bottom-3 left-1/2 transform -translate-x-1/2'>
                      Soups</h2>
                </SwiperSlide>
                <SwiperSlide className='relative'>
-                  <img src={slide3} alt="slide image" />
+                  <img src={slide2} alt="slide image" />
                   <h2 className='font-cinzel text-xl text-shadow-sm uppercase text-center 
                    text-gray-50 font-medium absolute bottom-3 left-1/2 transform -translate-x-1/2'>Pizzas</h2>
                </SwiperSlide>
