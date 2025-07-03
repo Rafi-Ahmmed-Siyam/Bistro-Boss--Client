@@ -7,9 +7,10 @@ const ItemCard = ({ foodItem }) => {
       <div className="rounded overflow-hidden border border-slate-200 pb-6 flex flex-col justify-between h-full bg-[#F3F3F3] relative">
          {/* Image */}
          <img
-            className="w-full min-h-[200px] lg:min-h-[250px]"
+            className="w-full min-h-[200px] lg:min-h-[250px] "
             src={image || "https://i.ibb.co/ycWFjBZD/soup-bg.jpg"}
-            alt={name}
+            referrerPolicy='no-referrer'
+            alt={name || "Food photo"}
          />
 
          <p className='bg-[#111827] text-white text-center text-base font-medium py-2 px-3 absolute right-5 top-5'>${price || "Price"}</p>

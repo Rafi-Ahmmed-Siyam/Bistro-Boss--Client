@@ -5,6 +5,7 @@ import Main from "../Layouts/Main";
 import HomePage from "../Pages/Home/HomePage";
 import MenuPage from "../Pages/Menu/MenuPage";
 import OrderFood from "../Pages/OrderFood/OrderFood";
+import axios from "axios";
 
 const router = createBrowserRouter(
    [
@@ -26,7 +27,8 @@ const router = createBrowserRouter(
             },
             {
                path: 'order',
-               element: <OrderFood />
+               element: <OrderFood />,
+               
             }
          ]
       },

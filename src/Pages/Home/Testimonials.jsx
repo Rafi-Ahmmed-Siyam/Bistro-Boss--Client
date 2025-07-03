@@ -10,16 +10,18 @@ import { Navigation } from 'swiper/modules';
 
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import axios from 'axios';
 
 const Testimonials = () => {
    const [reviews, setReviews] = useState([]);
    useEffect(() => {
-      fetch('Reviews.json')
-         .then(res => res.json())
-         .then(result => {
-            setReviews(result)
-         })
-   }, [])
+      getReviews()
+   }, []);
+
+   const getReviews = async () => {
+      const { data } = await axios.get(`${import.meta.env.VITE_URL}/reviews`);
+      setReviews(data);
+   }
 
    return (
       <section className='mt-16 lg:mt-28 max-w-7xl mx-auto'>

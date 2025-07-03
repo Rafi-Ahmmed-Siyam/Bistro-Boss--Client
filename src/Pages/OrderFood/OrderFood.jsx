@@ -5,11 +5,12 @@ import Cover from '../Shared/Cover';
 import useMenu from '../../Hooks/useMenu';
 import ColorTabs from './TabMenu';
 import TabMenu from './TabMenu';
+import { useLoaderData } from 'react-router-dom';
 
 
 const OrderFood = () => {
-   const { menu } = useMenu();
-   console.log(menu)
+  
+
 
    return (
       <div>
@@ -22,7 +23,7 @@ const OrderFood = () => {
             subTitle={"Would you like to try a dish?"} />
 
          <div className='mt-20'>
-            <TabMenu />
+            <TabMenu  />
          </div>
 
 

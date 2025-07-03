@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 
@@ -5,15 +6,14 @@ const useMenu = () => {
    const [menu, setMenu] = useState([]);
    const [loading, setLoding] = useState(true)
    useEffect(() => {
+      getMenuData();
+   }, []);
 
-      fetch('/Menu.json')
-         .then((res) => res.json())
-         .then((data) => {
-            setMenu(data)
-            setLoding(false)
-         })
-   }, [])
-   // console.log(menu)
+   const getMenuData = async () => {
+      const { data } = await axios.get(`${import.meta.env.VITE_URL}/menu`);
+      setLoding(false)
+      setMenu(data)
+   }
 
    return { menu, loading }
 
