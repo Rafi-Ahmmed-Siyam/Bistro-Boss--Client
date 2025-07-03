@@ -5,13 +5,11 @@ import Cover from '../Shared/Cover';
 import useMenu from '../../Hooks/useMenu';
 import ColorTabs from './TabMenu';
 import TabMenu from './TabMenu';
-import { useLoaderData } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 const OrderFood = () => {
-  
-
-
+   const { category } = useParams();
    return (
       <div>
          <Helmet><title>Bistro Boss | Shop</title></Helmet>
@@ -23,7 +21,7 @@ const OrderFood = () => {
             subTitle={"Would you like to try a dish?"} />
 
          <div className='mt-20'>
-            <TabMenu  />
+            <TabMenu category={category} />
          </div>
 
 

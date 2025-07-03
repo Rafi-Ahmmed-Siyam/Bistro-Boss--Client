@@ -9,6 +9,7 @@ import { MdArrowBack } from "react-icons/md";
 import { MdArrowForward } from "react-icons/md";
 import axios from 'axios';
 import { Button } from '@mui/material';
+import Spinner from '../../Components/Spinner';
 const tabStyles = {
    textTransform: 'uppercase',
    fontWeight: 700,
@@ -27,8 +28,8 @@ const tabStyles = {
    },
 };
 
-const TabMenu = () => {
-   const { category } = useParams();
+const TabMenu = ({ category }) => {
+   const [loding, setLodding] = useState(true);
    const [categoryMenu, setCategoryMenu] = useState([]);
    const [value, setValue] = useState(category || 'salad');
 
@@ -50,6 +51,7 @@ const TabMenu = () => {
    }, [value, currentPage])
    const getCategoryData = async () => {
       const { data } = await axios.get(`${import.meta.env.VITE_URL}/menu/${value}?page=${currentPage - 1}&limit=6`);
+      setLodding(false)
       setCategoryMenu(data)
    }
 
@@ -96,12 +98,15 @@ const TabMenu = () => {
 
          </div>
          <div className='max-w-7xl mx-auto'>
-            <div className='mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center justify-items-center gap-5   px-3.5 md:px-0 lg:px-0'>
+            {
+               loding && <div>
+                  <Spinner />
+               </div>
+            }
+            <div className='mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center justify-items-center gap-5 px-3.5 md:px-0 lg:px-0'>
                {
                   categoryMenu.map(foodItem => <ItemCard key={foodItem._id} foodItem={foodItem} />)
                }
-
-
             </div>
 
             <div className='mt-10 flex justify-center items-center gap-4'>

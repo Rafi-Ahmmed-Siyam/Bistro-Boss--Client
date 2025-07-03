@@ -11,7 +11,7 @@ const PopularMenu = () => {
 
    return (
       <div>
-         <MenuCategory btnContent={"View Full  Menu"} menuSubHeding={"FROM OUR MENU"} menuHeading={'Check it out'} menuData={popularMenu} />
+         <MenuCategory category={'salad'} btnContent={"View Full  Menu"} menuSubHeding={"FROM OUR MENU"} menuHeading={'Check it out'} menuData={popularMenu} />
       </div>
    );
 };

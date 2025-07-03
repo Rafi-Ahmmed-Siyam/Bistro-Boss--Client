@@ -5,8 +5,8 @@ const ScrollToTop = () => {
    const { pathname } = useLocation();
 
    useEffect(() => {
-      const scrollToTopPaths = ['/', '/menu', '/order'];
-      const scrollToPartialDownPaths = ['/order/']; // ডাইনামিক ক্যাটেগরি URL গুলো এখানে
+      const scrollToTopPaths = ['/', '/menu', '/order', '/contact'];
+      const scrollToPartialDownPaths = ['/order/'];
 
       if (scrollToTopPaths.includes(pathname)) {
          window.scrollTo(0, 0);

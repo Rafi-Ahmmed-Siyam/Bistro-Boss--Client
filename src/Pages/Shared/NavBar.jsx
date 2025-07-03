@@ -17,7 +17,7 @@ const NavBar = () => {
 
                   <li><NavLink to={'/'} className={linkStyle}>Home</NavLink></li>
 
-                  <li><NavLink className={linkStyle}>Contact Us</NavLink></li>
+                  <li><NavLink to={'/contact'} className={linkStyle}>Contact Us</NavLink></li>
 
                   <li className='hidden md:hidden lg:block' ><NavLink to={'/menu'} className={linkStyle}>Our Menu</NavLink></li>
 

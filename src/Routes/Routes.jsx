@@ -6,6 +6,9 @@ import HomePage from "../Pages/Home/HomePage";
 import MenuPage from "../Pages/Menu/MenuPage";
 import OrderFood from "../Pages/OrderFood/OrderFood";
 import axios from "axios";
+import ContactUs from "../Pages/Home/ContactUs";
+import ContactUS from "../Pages/Contact/ContactUsPage";
+import ContactUsPage from "../Pages/Contact/ContactUsPage";
 
 const router = createBrowserRouter(
    [
@@ -28,7 +31,11 @@ const router = createBrowserRouter(
             {
                path: 'order',
                element: <OrderFood />,
-               
+
+            },
+            {
+               path: 'contact',
+               element: <ContactUsPage />
             }
          ]
       },
