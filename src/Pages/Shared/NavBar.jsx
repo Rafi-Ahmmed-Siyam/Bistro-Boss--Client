@@ -22,7 +22,7 @@ const NavBar = () => {
                   <li className='hidden md:hidden lg:block' ><NavLink to={'/menu'} className={linkStyle}>Our Menu</NavLink></li>
 
                   <li className='hidden md:hidden lg:block'><NavLink className={linkStyle} to={'/order'}>Our Shop</NavLink></li>
-                  <li><NavLink>Sign in</NavLink></li>
+                  <li><NavLink to={'/signin'} className={linkStyle}>Sign in</NavLink></li>
 
                   <div className="dropdown dropdown-end ">
                      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

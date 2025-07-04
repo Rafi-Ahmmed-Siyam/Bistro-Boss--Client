@@ -5,7 +5,7 @@ const ScrollToTop = () => {
    const { pathname } = useLocation();
 
    useEffect(() => {
-      const scrollToTopPaths = ['/', '/menu', '/order', '/contact'];
+      const scrollToTopPaths = ['/', '/menu', '/order', '/contact', '/signUp', '/signin'];
       const scrollToPartialDownPaths = ['/order/'];
 
       if (scrollToTopPaths.includes(pathname)) {
