@@ -7,7 +7,7 @@ import ScrollToTop from '../Components/ScrollToTop';
 
 const Main = () => {
    const { pathname } = useLocation();
-   console.log(pathname)
+
    const noHeaderFooter = pathname.toLowerCase().includes('/signin') || pathname.toLowerCase().includes('/signup');
    return (
       <div className='font-inter'>
