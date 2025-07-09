@@ -1,9 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 
 const NavBar = () => {
+   const { user, userSignOut } = useAuth();
    const linkStyle = ({ isActive }) =>
       isActive ? "text-[#EEFF25] font-medium" : "text-white font-normal";
+
+   const handleLogout = () => {
+      userSignOut();
+   }
 
    return (
       <div>
@@ -14,33 +20,52 @@ const NavBar = () => {
             </div>
             <div className="flex-none">
                <ul className="menu menu-horizontal px-1">
-
                   <li><NavLink to={'/'} className={linkStyle}>Home</NavLink></li>
-
-                  <li><NavLink to={'/contact'} className={linkStyle}>Contact Us</NavLink></li>
-
+                  <li className='hidden md:block lg:block'><NavLink to={'/contact'} className={linkStyle}>Contact Us</NavLink></li>
                   <li className='hidden md:hidden lg:block' ><NavLink to={'/menu'} className={linkStyle}>Our Menu</NavLink></li>
-
                   <li className='hidden md:hidden lg:block'><NavLink className={linkStyle} to={'/order'}>Our Shop</NavLink></li>
-                  <li><NavLink to={'/signin'} className={linkStyle}>Sign in</NavLink></li>
 
-                  <div className="dropdown dropdown-end ">
-                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                           <img
-                              alt="Tailwind CSS Navbar component"
-                              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  {
+                     user ? " " : <li className='block md:block lg:hidden'>
+                        <details>
+                           <summary>Others</summary>
+                           <ul className="px-4 text-black">
+                              <li><NavLink>Dashboard</NavLink></li>
+                              <li ><NavLink to={'/menu'}>Our Menu</NavLink></li>
+                              <li ><NavLink to={'/order'} >Our Shop</NavLink></li>
+                              <li className='hidden md:hidden lg:hidden'><NavLink to={'/contact'} >Contact Us</NavLink></li>
+                           </ul>
+                        </details>
+                     </li>
+                  }
+
+                  {
+                     (user) ?
+                        <div className="dropdown dropdown-end ">
+                           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                              <div className="w-10 rounded-full">
+                                 <img
+                                    alt="Tailwind CSS Navbar component"
+                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                              </div>
+                           </div>
+                           <ul
+                              tabIndex={0}
+                              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black">
+                              <li><NavLink>Dashboard</NavLink></li>
+                              <li className='block md:block lg:hidden'><NavLink to={'/menu'}>Our Menu</NavLink></li>
+                              <li className='block md:block lg:hidden'><NavLink to={'/order'} >Our Shop</NavLink></li>
+                              <li onClick={handleLogout} className='btn'>Sign Out</li>
+                           </ul>
                         </div>
-                     </div>
-                     <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black">
-                        <li><NavLink>Dashboard</NavLink></li>
-                        <li className='block md:block lg:hidden'><NavLink to={'/menu'}>Our Menu</NavLink></li>
-                        <li className='block md:block lg:hidden'><NavLink to={'/order'} >Our Shop</NavLink></li>
-                        <li><NavLink>Sign Out</NavLink></li>
-                     </ul>
-                  </div>
+                        :
+
+                        <li><NavLink to={'/signin'} className={linkStyle}>Sign in</NavLink></li>
+                  }
+
+
+
+
 
                </ul>
             </div>
