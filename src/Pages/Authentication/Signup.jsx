@@ -2,14 +2,16 @@ import { Helmet } from 'react-helmet-async';
 import signupimg from '../../assets/others/authentication2.png'
 import bgImg from '../../assets/others/authentication.png';
 import SocialButtons from './SocialButtons';
-import { LoadCanvasTemplate } from 'react-simple-captcha';
-import { FaCheck } from 'react-icons/fa';
+import { IoEye, IoEyeOff } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
+import { useState } from 'react';
 
 const SignUp = () => {
    const { createUser, updateUserData } = useAuth();
    const navigate = useNavigate();
+   const [showPass, setShowPass] = useState(false);
+   const [passError, setPassError] = useState('')
    const handleSignUp = (e) => {
       e.preventDefault();
       const form = e.target;
@@ -17,6 +19,17 @@ const SignUp = () => {
       const email = form.userEmail.value;
       const photoUrl = form.photoURL.value;
       const password = form.password.value;
+
+      setPassError(" ")
+
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).*$/;
+      if (password.length < 8) {
+         return setPassError("Password must be at least 8 characters long.")
+      }
+      if (!passwordRegex.test(password)) {
+         return setPassError("Password must include at least one uppercase, one lowercase, one number, and one special character.")
+      }
+
       createUser(email, password)
          .then(result => {
             return updateUserData(name, photoUrl);
@@ -54,12 +67,19 @@ const SignUp = () => {
                         <label className="label text-base font-semibold mb-2.5 text-[#444444]">Photo URL</label>
                         <input name="photoURL" type="url" className="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full py-4 px-5" placeholder="Enter your Photo URL" />
                      </div>
-                     {/* password */}
-                     <div className="mt-2.5">
-                        <label className="label text-base font-semibold mb-2.5 text-[#444444]">Password</label>
-                        <input required name="password" type="password" className="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full py-4 px-5" placeholder="Create a password" />
-                     </div>
 
+                     {/* Password */}
+                     <div className="mt-2 relative">
+                        <label className="label text-base font-semibold mb-2.5 text-[#444444]">Password</label>
+                        <input name="password" type={showPass ? 'text' : 'password'} className="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full py-4 px-5" placeholder="Create a Password" required />
+                        <button onClick={() => setShowPass(!showPass)} type='button' className='btn btn-xs lg:btn-sm btn-circle border-none bg-transparent absolute right-2.5 bottom-3.5 md:bottom-3.5 lg:bottom-2.5'>{showPass ? <IoEyeOff className='text-xl' /> : <IoEye className='text-xl' />} </button>
+
+                     </div>
+                     <div className='mt-2'>
+                        {
+                           (passError) && <label className="text-sm font-medium text-red-500 text-center break-words max-w-sm">{passError}</label>
+                        }
+                     </div>
                      <button type='submit' className="btn mt-4 w-full text-white
                   bg-[#D1A054] hover:bg-[#d39d4c] cursor-pointer"
                      >Sign Up</button>

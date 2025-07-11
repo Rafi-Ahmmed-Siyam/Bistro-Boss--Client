@@ -20,7 +20,9 @@ import SectionTitle from '../../Components/SectionTitle';
 const Category = () => {
    return (
       <section className='mt-12 lg:mt-20'>
-         <SectionTitle subHeading={'From 11:00am to 10:00pm'} heading={'ORDER ONLINE'} />
+         <div className='hidden md:hidden lg:block'>
+            <SectionTitle subHeading={'From 11:00am to 10:00pm'} heading={'ORDER ONLINE'} />
+         </div>
          <div className='max-w-7xl mx-auto mb-2 hidden md:hidden lg:block'>
             <Swiper
                slidesPerView={1}

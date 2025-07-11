@@ -5,6 +5,7 @@ import SocialButtons from './SocialButtons';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useEffect, useRef, useState } from 'react';
 import { FaCheck } from "react-icons/fa";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 import { Helmet } from 'react-helmet-async';
 import useAuth from '../../Hooks/useAuth';
 
@@ -13,6 +14,7 @@ const SignIn = () => {
    const { signIn } = useAuth();
    const navigate = useNavigate();
    const [signInDisable, setSignInDisable] = useState(true);
+   const [showPass, setShowPass] = useState(false);
    const capchaRef = useRef();
 
    const handleLogin = (e) => {
@@ -66,9 +68,11 @@ const SignIn = () => {
                         <label className="label text-base font-semibold mb-2.5 text-[#444444]">Email</label>
                         <input name="userEmail" type="email" className="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full py-4 px-5" placeholder="Enter your email" required />
                      </div>
-                     <div className="mt-2">
+                     {/* Password */}
+                     <div className="mt-2 relative">
                         <label className="label text-base font-semibold mb-2.5 text-[#444444]">Password</label>
-                        <input name="password" type="password" className="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full py-4 px-5" placeholder="Enter your password" required />
+                        <input name="password" type={showPass ? 'text' : 'password'} className="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full py-4 px-5" placeholder="Enter your password" required />
+                        <button onClick={() => setShowPass(!showPass)} type='button' className='btn btn-xs lg:btn-sm btn-circle border-none bg-transparent absolute right-2.5 bottom-3.5 md:bottom-3.5 lg:bottom-2.5'>{showPass ? <IoEyeOff className='text-xl' /> : <IoEye className='text-xl' />} </button>
                      </div>
                      <div className="mt-3.5">
                         <label className="label text-sm font-semibold text-[#5D5FEF]"><LoadCanvasTemplate /></label>
@@ -76,7 +80,7 @@ const SignIn = () => {
                      {/* Capcha input */}
                      <div className="mt-1.5 relative ">
                         <input ref={capchaRef} name="capchaText" type="text" className="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full py-4 px-5" placeholder="Type the text above and click check button" required />
-                        <button onClick={handleValidateCapchaValue} type='button' className='btn btn-xs lg:btn-sm btn-circle absolute top-6 lg:top-3 right-3 bg-blend-normal lg:bg-transparent'><FaCheck className='text-green-500 text-xs lg:text-sm' /></button>
+                        <button onClick={handleValidateCapchaValue} type='button' className='btn btn-xs lg:btn-sm btn-circle absolute top-4 md:top-4 lg:top-3 right-3 lg:right-3.5 bg-blend-normal lg:bg-transparent'><FaCheck className='text-green-500 text-xs lg:text-sm' /></button>
                      </div>
                      <div className="mt-2">
                         <a className="link link-hover text-sm text-blue-600">Forgot password?</a>
