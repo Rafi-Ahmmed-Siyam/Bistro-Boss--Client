@@ -1,15 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
+import { IoLogOutOutline } from "react-icons/io5";
 
 const NavBar = () => {
    const { user, userSignOut } = useAuth();
    const linkStyle = ({ isActive }) =>
       isActive ? "text-[#EEFF25] font-medium" : "text-white font-normal";
+   const linkStyle2 = ({ isActive }) =>
+      isActive ? "bg-amber-400 text-xs md:text-sm" : "text-black text-xs md:text-sm";
 
-   const handleLogout = () => {
-      userSignOut();
-   }
+
 
    return (
       <div>
@@ -34,7 +35,7 @@ const NavBar = () => {
                            <summary>Others</summary>
                            <ul className="py-2 px-2.5 text-black">
                               <li><NavLink>Dashboard</NavLink></li>
-                              <li ><NavLink to={'/menu'}>Our Menu</NavLink></li>
+                              <li className='block md:hidden ' ><NavLink to={'/menu'}>Our Menu</NavLink></li>
                               <li ><NavLink to={'/order'} >Our Shop</NavLink></li>
                               <li className='hidden md:hidden lg:hidden'><NavLink to={'/contact'} >Contact Us</NavLink></li>
                            </ul>
@@ -57,10 +58,10 @@ const NavBar = () => {
                            <ul
                               tabIndex={0}
                               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black">
-                              <li><NavLink>Dashboard</NavLink></li>
-                              <li className='block md:hidden lg:hidden'><NavLink to={'/menu'}>Our Menu</NavLink></li>
-                              <li className='block md:block lg:hidden'><NavLink to={'/order'} >Our Shop</NavLink></li>
-                              <li onClick={handleLogout} className='btn'>Sign Out</li>
+                              <li ><NavLink className={''}>Dashboard</NavLink></li>
+                              <li className='block md:hidden lg:hidden mt-0.5'><NavLink className={linkStyle2} to={'/menu'}>Our Menu</NavLink></li>
+                              <li className='block md:block lg:hidden mt-0.5'><NavLink className={linkStyle2} to={'/order'} >Our Shop</NavLink></li>
+                              <li onClick={() => userSignOut()} className='btn btn-sm text-black mt-2 rounded-lg bg-[#C62828] hover:bg-red-700 border-none'>Sign Out </li>
                            </ul>
                         </div>
                         :

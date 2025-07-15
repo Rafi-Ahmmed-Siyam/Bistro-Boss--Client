@@ -30,12 +30,15 @@ const AuthProvider = ({ children }) => {
       })
    }
    const googleLogin = () => {
+      setLoding(true);
       return signInWithPopup(auth, googleProvider);
    }
    const facebookLogin = () => {
+      setLoding(true);
       return signInWithPopup(auth, facebookProvider)
    }
    const gitHubLogin = () => {
+      setLoding(true);
       return signInWithPopup(auth, githubProvider);
    }
 
