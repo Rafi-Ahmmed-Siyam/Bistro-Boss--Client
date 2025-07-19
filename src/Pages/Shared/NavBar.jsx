@@ -1,78 +1,130 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
-import { IoLogOutOutline } from "react-icons/io5";
+import { IoLogOutOutline } from 'react-icons/io5';
 
 const NavBar = () => {
    const { user, userSignOut } = useAuth();
    const linkStyle = ({ isActive }) =>
-      isActive ? "text-[#EEFF25] font-medium" : "text-white font-normal";
+      isActive ? 'text-[#EEFF25] font-medium' : 'text-white font-normal';
    const linkStyle2 = ({ isActive }) =>
-      isActive ? "bg-amber-400 text-xs md:text-sm" : "text-black text-xs md:text-sm";
-
-
+      isActive
+         ? 'bg-amber-400 text-xs md:text-sm'
+         : 'text-black text-xs md:text-sm';
 
    return (
       <div>
-         <div className="navbar text-white shadow-sm px-2 md:px-2 lg:px-5 bg-black/50 container fixed z-50">
+         <div className="navbar text-white shadow-sm px-2 md:px-2 lg:px-5 py-0 md:py-3 lg:py-3.5 bg-black/50 container fixed z-50">
             <div className="flex-1 ">
-               <NavLink to={'/'} className="font-semibold md:font-bold lg:font-extrabold text-base md:text-lg lg:text-xl ">BISTRO BOSS</NavLink>
-               <p className='hidden md:block lg:block font-semibold text-base tracking-widest font-cinzel mt-0.5'>RESTURENT</p>
+               <NavLink
+                  to={'/'}
+                  className="font-cinzel font-semibold md:font-bold lg:font-black text-base md:text-lg lg:text-xl "
+               >
+                  BISTRO BOSS
+               </NavLink>
+               <p className="hidden md:block lg:block font-semibold text-base tracking-widest font-cinzel mt-0.5">
+                  RESTAURANT
+               </p>
             </div>
             <div className="flex-none">
                <ul className="menu menu-horizontal px-1">
-                  <li><NavLink to={'/'} className={linkStyle}>Home</NavLink></li>
-                  <li className={`hidden md:block lg:block `}><NavLink to={'/contact'} className={linkStyle}>Contact Us</NavLink></li>
-                  <li className={user ? 'block md:hidden' : 'hidden md:hidden'}>
-                     <NavLink to={'/contact'} className={linkStyle}>Contact Us</NavLink>
+                  <li>
+                     <NavLink to={'/'} className={linkStyle}>
+                        Home
+                     </NavLink>
                   </li>
-                  <li className='hidden md:block lg:block' ><NavLink to={'/menu'} className={linkStyle}>Our Menu</NavLink></li>
-                  <li className='hidden md:hidden lg:block'><NavLink className={linkStyle} to={'/order'}>Our Shop</NavLink></li>
+                  <li className={`hidden md:block lg:block `}>
+                     <NavLink to={'/contact'} className={linkStyle}>
+                        Contact Us
+                     </NavLink>
+                  </li>
+                  <li className={user ? 'block md:hidden' : 'hidden md:hidden'}>
+                     <NavLink to={'/contact'} className={linkStyle}>
+                        Contact Us
+                     </NavLink>
+                  </li>
+                  <li className="hidden md:block lg:block">
+                     <NavLink to={'/menu'} className={linkStyle}>
+                        Our Menu
+                     </NavLink>
+                  </li>
+                  <li className="hidden md:hidden lg:block">
+                     <NavLink className={linkStyle} to={'/order'}>
+                        Our Shop
+                     </NavLink>
+                  </li>
 
-                  {
-                     user ? " " : <li className='block md:block lg:hidden'>
+                  {user ? (
+                     ' '
+                  ) : (
+                     <li className="block md:block lg:hidden">
                         <details>
                            <summary>Others</summary>
                            <ul className="py-2 px-2.5 text-black">
-                              <li><NavLink>Dashboard</NavLink></li>
-                              <li className='block md:hidden ' ><NavLink to={'/menu'}>Our Menu</NavLink></li>
-                              <li ><NavLink to={'/order'} >Our Shop</NavLink></li>
-                              <li className='hidden md:hidden lg:hidden'><NavLink to={'/contact'} >Contact Us</NavLink></li>
+                              <li>
+                                 <NavLink>Dashboard</NavLink>
+                              </li>
+                              <li className="block md:hidden ">
+                                 <NavLink to={'/menu'}>Our Menu</NavLink>
+                              </li>
+                              <li>
+                                 <NavLink to={'/order'}>Our Shop</NavLink>
+                              </li>
+                              <li className="hidden md:hidden lg:hidden">
+                                 <NavLink to={'/contact'}>Contact Us</NavLink>
+                              </li>
                            </ul>
                         </details>
                      </li>
-                  }
+                  )}
 
-                  {
-                     (user) ?
-                        <div className="dropdown dropdown-end ">
-                           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar ">
-                              <div className="w-10 rounded-full border-2 border-green-700">
-                                 <img
-
-                                    alt="User Photo"
-                                    referrerPolicy='no-referrer'
-                                    src={user?.photoURL} />
-                              </div>
+                  {user ? (
+                     <div className="dropdown dropdown-end ">
+                        <div
+                           tabIndex={0}
+                           role="button"
+                           className="btn btn-ghost btn-circle avatar "
+                        >
+                           <div className="w-10 rounded-full border-2 border-green-700">
+                              <img
+                                 alt="User Photo"
+                                 referrerPolicy="no-referrer"
+                                 src={user?.photoURL}
+                              />
                            </div>
-                           <ul
-                              tabIndex={0}
-                              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black">
-                              <li ><NavLink className={''}>Dashboard</NavLink></li>
-                              <li className='block md:hidden lg:hidden mt-0.5'><NavLink className={linkStyle2} to={'/menu'}>Our Menu</NavLink></li>
-                              <li className='block md:block lg:hidden mt-0.5'><NavLink className={linkStyle2} to={'/order'} >Our Shop</NavLink></li>
-                              <li onClick={() => userSignOut()} className='btn btn-sm text-black mt-2 rounded-lg bg-[#C62828] hover:bg-red-700 border-none'>Sign Out </li>
-                           </ul>
                         </div>
-                        :
-
-                        <li><NavLink to={'/signin'} className={linkStyle}>Sign in</NavLink></li>
-                  }
-
-
-
-
-
+                        <ul
+                           tabIndex={0}
+                           className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black"
+                        >
+                           <li>
+                              <NavLink className={''}>Dashboard</NavLink>
+                           </li>
+                           <li className="block md:hidden lg:hidden mt-0.5">
+                              <NavLink className={linkStyle2} to={'/menu'}>
+                                 Our Menu
+                              </NavLink>
+                           </li>
+                           <li className="block md:block lg:hidden mt-0.5">
+                              <NavLink className={linkStyle2} to={'/order'}>
+                                 Our Shop
+                              </NavLink>
+                           </li>
+                           <li
+                              onClick={() => userSignOut()}
+                              className="btn btn-sm text-black mt-2 rounded-lg bg-[#C62828] hover:bg-red-700 border-none"
+                           >
+                              Sign Out{' '}
+                           </li>
+                        </ul>
+                     </div>
+                  ) : (
+                     <li>
+                        <NavLink to={'/signin'} className={linkStyle}>
+                           Sign in
+                        </NavLink>
+                     </li>
+                  )}
                </ul>
             </div>
          </div>
