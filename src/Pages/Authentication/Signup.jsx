@@ -16,7 +16,7 @@ const SignUp = () => {
    const [showPass, setShowPass] = useState(false);
    const location = useLocation();
 
-   const from = location.state?.form.pathname || '/';
+   const from = location.state?.from?.pathname || '/';
 
    const {
       register,

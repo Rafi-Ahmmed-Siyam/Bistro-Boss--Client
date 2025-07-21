@@ -12,7 +12,7 @@ import { Toaster } from 'react-hot-toast';
 createRoot(document.getElementById('root')).render(
    <StrictMode>
       <HelmetProvider>
-         <Toaster position="top-right" reverseOrder={false} />
+         <Toaster position="top-center" reverseOrder={false} />
          <AuthProvider>
             <div className="container mx-auto ">
                <RouterProvider router={router} />

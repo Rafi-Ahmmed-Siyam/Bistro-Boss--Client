@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
-import { IoLogOutOutline } from 'react-icons/io5';
+import { BsCart4 } from 'react-icons/bs';
+import { MdLogout } from 'react-icons/md';
 
 const NavBar = () => {
    const { user, userSignOut } = useAuth();
@@ -57,69 +58,87 @@ const NavBar = () => {
                   {user ? (
                      ' '
                   ) : (
-                     <li className="block md:block lg:hidden">
-                        <details>
-                           <summary>Others</summary>
-                           <ul className="py-2 px-2.5 text-black">
-                              <li>
-                                 <NavLink>Dashboard</NavLink>
-                              </li>
-                              <li className="block md:hidden ">
-                                 <NavLink to={'/menu'}>Our Menu</NavLink>
-                              </li>
-                              <li>
-                                 <NavLink to={'/order'}>Our Shop</NavLink>
-                              </li>
-                              <li className="hidden md:hidden lg:hidden">
-                                 <NavLink to={'/contact'}>Contact Us</NavLink>
-                              </li>
-                           </ul>
-                        </details>
-                     </li>
+                     <>
+                        <li className="block md:block lg:hidden">
+                           <details>
+                              <summary>Others</summary>
+                              <ul className="py-2 px-2.5 text-black">
+                                 <li>
+                                    <NavLink>Dashboard</NavLink>
+                                 </li>
+                                 <li className="block md:hidden ">
+                                    <NavLink to={'/menu'}>Our Menu</NavLink>
+                                 </li>
+                                 <li>
+                                    <NavLink to={'/order'}>Our Shop</NavLink>
+                                 </li>
+                                 <li className="hidden md:hidden lg:hidden">
+                                    <NavLink to={'/contact'}>
+                                       Contact Us
+                                    </NavLink>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                     </>
                   )}
 
                   {user ? (
-                     <div className="dropdown dropdown-end ">
-                        <div
-                           tabIndex={0}
-                           role="button"
-                           className="btn btn-ghost btn-circle avatar "
-                        >
-                           <div className="w-10 rounded-full border-2 border-green-700">
-                              <img
-                                 alt="User Photo"
-                                 referrerPolicy="no-referrer"
-                                 src={user?.photoURL}
-                              />
-                           </div>
-                        </div>
-                        <ul
-                           tabIndex={0}
-                           className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black"
-                        >
-                           <li>
-                              <NavLink className={''}>Dashboard</NavLink>
-                           </li>
-                           <li className="block md:hidden lg:hidden mt-0.5">
-                              <NavLink className={linkStyle2} to={'/menu'}>
-                                 Our Menu
-                              </NavLink>
-                           </li>
-                           <li className="block md:block lg:hidden mt-0.5">
-                              <NavLink className={linkStyle2} to={'/order'}>
-                                 Our Shop
-                              </NavLink>
-                           </li>
-                           <li
-                              onClick={() => userSignOut()}
-                              className="btn btn-sm text-black mt-2 rounded-lg bg-[#C62828] hover:bg-red-700 border-none"
+                     <>
+                        {/* Cart option */}
+                        <li className="relative">
+                           <span className={`mr-1.5`}>
+                              <BsCart4 className="text-2xl text-white" />
+                              <span className="text-white text-xs bg-black font-medium px-1 text-center  rounded-full absolute left-[23px] z-50 bottom-5">
+                                 10
+                              </span>
+                           </span>
+                        </li>
+                        <div className="dropdown dropdown-end ">
+                           <div
+                              tabIndex={0}
+                              role="button"
+                              className="btn btn-ghost btn-circle avatar "
                            >
-                              Sign Out{' '}
-                           </li>
-                        </ul>
-                     </div>
+                              <div className="w-10 rounded-full border-2 border-green-700">
+                                 <img
+                                    alt="User Photo"
+                                    referrerPolicy="no-referrer"
+                                    src={user?.photoURL}
+                                 />
+                              </div>
+                           </div>
+                           <ul
+                              tabIndex={0}
+                              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black"
+                           >
+                              <li>
+                                 <NavLink className={''}>Dashboard</NavLink>
+                              </li>
+                              <li className="block md:hidden lg:hidden mt-0.5">
+                                 <NavLink className={linkStyle2} to={'/menu'}>
+                                    Our Menu
+                                 </NavLink>
+                              </li>
+                              <li className="block md:block lg:hidden mt-0.5">
+                                 <NavLink className={linkStyle2} to={'/order'}>
+                                    Our Shop
+                                 </NavLink>
+                              </li>
+                              <li
+                                 onClick={() => userSignOut()}
+                                 className="btn btn-sm  text-black mt-2 rounded-lg bg-red-700 hover:bg-red-800 border-none"
+                              >
+                                 <span className="text-white flex items-center">
+                                    Sign Out
+                                    <MdLogout className="text-white text-lg" />
+                                 </span>
+                              </li>
+                           </ul>
+                        </div>
+                     </>
                   ) : (
-                     <li>
+                     <li className="text-black">
                         <NavLink to={'/signin'} className={linkStyle}>
                            Sign in
                         </NavLink>

@@ -32,11 +32,7 @@ const router = createBrowserRouter(
             },
             {
                path: 'order',
-               element: (
-                  <PrivetRoute>
-                     <OrderFood />
-                  </PrivetRoute>
-               ),
+               element: <OrderFood />,
             },
             {
                path: 'contact',

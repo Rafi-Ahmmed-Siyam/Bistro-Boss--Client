@@ -3,9 +3,17 @@ import bistroBossLogo from '../../assets/icon/logo-Bistro-Boss.png';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../Firebase/Firebase.config';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { CgDanger } from 'react-icons/cg';
 
 const ForgotPassword = () => {
-   const { register, handleSubmit, reset } = useForm();
+   const {
+      register,
+      handleSubmit,
+      reset,
+      formState: { errors },
+   } = useForm();
 
    const handleForGotPass = (data) => {
       const { email } = data;
@@ -16,10 +24,9 @@ const ForgotPassword = () => {
             toast.success(
                'Password reset email sent! Please check your inbox or spam folder. 📧'
             );
-            reset(); // ইমেইল ফিল্ড ক্লিয়ার হবে
+            reset();
          })
          .catch((err) => {
-            // Firebase error code এর ভিত্তিতে ইউজার ফ্রেন্ডলি মেসেজ দেখানো
             if (err.code === 'auth/user-not-found') {
                toast.error('No user found with this email.');
             } else if (err.code === 'auth/invalid-email') {
@@ -31,14 +38,17 @@ const ForgotPassword = () => {
    };
 
    return (
-      <section className="flex justify-center items-center min-h-screen bg-gray-50 px-2 lg:px-0">
-         <div className="w-full max-w-[450px] px-6 py-5 bg-white rounded-lg shadow-lg ">
+      <section className="flex justify-center items-center min-h-screen bg-gray-50 px-3 lg:px-0">
+         <Helmet>
+            <title>Bistro Boss | Forgot Password</title>
+         </Helmet>
+         <div className="w-full max-w-[450px] px-6 py-6 bg-white rounded-lg shadow-lg ">
             <img
-               className="w-16 block mx-auto mb-3"
+               className="w-14 block mx-auto mb-3"
                src={bistroBossLogo}
                alt="logo"
             />
-            <h2 className="text-2xl font-semibold text-center mb-4">
+            <h2 className="text-2xl font-semibold text-center mb-3">
                Reset Your Password
             </h2>
             <p className="text-gray-500 text-sm text-center mb-6">
@@ -50,17 +60,22 @@ const ForgotPassword = () => {
                      Email Address
                   </label>
                   <input
-                     {...register('email')}
+                     {...register('email', { required: true })}
                      name="email"
                      type="email"
-                     className="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full py-3 px-5 mb-4"
+                     className="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full py-3 px-3.5 mb-1.5"
                      placeholder="Enter a valid Email Address"
-                     required
                   />
+                  {errors.email?.type === 'required' && (
+                     <span className="text-sm font-medium text-red-500 flex items-center  gap-1 ">
+                        <CgDanger />
+                        Email must be required
+                     </span>
+                  )}
                </div>
                <button
                   type="submit"
-                  className="btn w-full text-white bg-[#D1A054] hover:bg-[#d39d4c] cursor-pointer"
+                  className="btn w-full text-white bg-[#D1A054] hover:bg-[#d39d4c] mt-3.5 cursor-pointer"
                >
                   Send Reset Link
                </button>
@@ -69,12 +84,15 @@ const ForgotPassword = () => {
                   mark it as “Not Spam”.
                </p>
                <div className="text-center mt-4">
-                  <a
-                     href="/signin"
-                     className="text-sm text-neutral hover:underline"
-                  >
-                     Back to Sign In
-                  </a>
+                  <p className="text-center text-[#D1A054] font-normal text-sm">
+                     Back to{' '}
+                     <Link
+                        to="/signin"
+                        className="font-semibold text-sm hover:underline"
+                     >
+                        Sign In
+                     </Link>
+                  </p>
                </div>
             </form>
          </div>

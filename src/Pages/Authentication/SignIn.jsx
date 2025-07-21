@@ -21,7 +21,7 @@ const SignIn = () => {
    const location = useLocation();
 
    const from = location.state?.from?.pathname || '/';
-
+   // console.log(from)
    const {
       register,
       handleSubmit,
@@ -146,7 +146,7 @@ const SignIn = () => {
                            type="button"
                            className="btn btn-xs lg:btn-sm btn-circle absolute top-4 md:top-4 lg:top-3 right-3 lg:right-3.5 bg-blend-normal lg:bg-transparent"
                         >
-                           <FaCheck className="text-green-500 text-xs lg:text-xs" />
+                           <FaCheck className="text-green-500 text-xs lg:text-[14px]" />
                         </button>
                      </div>
                      <div className="mt-1.5">
