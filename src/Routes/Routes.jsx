@@ -3,14 +3,14 @@ import Main from '../Layouts/Main';
 import HomePage from '../Pages/Home/HomePage';
 import MenuPage from '../Pages/Menu/MenuPage';
 import OrderFood from '../Pages/OrderFood/OrderFood';
-import axios from 'axios';
 import ContactUs from '../Pages/Home/ContactUs';
 import ContactUS from '../Pages/Contact/ContactUsPage';
 import ContactUsPage from '../Pages/Contact/ContactUsPage';
 import SignIn from '../Pages/Authentication/SignIn';
 import SignUp from '../Pages/Authentication/Signup';
-import PrivetRoute from './PrivetRoute';
 import ForgotPassword from '../Pages/Authentication/ForgotPassword';
+import DashBoard from '../Layouts/DashBoard';
+import Cart from '../Pages/Dashboard/Cart/Cart';
 
 const router = createBrowserRouter(
    [
@@ -49,6 +49,18 @@ const router = createBrowserRouter(
             {
                path: 'update-Password',
                element: <ForgotPassword />,
+            },
+         ],
+      },
+
+      // DashBoard
+      {
+         path: 'dashboard',
+         element: <DashBoard />,
+         children: [
+            {
+               path: 'cart',
+               element: <Cart />,
             },
          ],
       },

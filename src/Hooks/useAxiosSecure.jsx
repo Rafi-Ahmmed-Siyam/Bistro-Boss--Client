@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React from 'react';
 
-export const axiosInstance = axios.create({
+const axiosInstance = axios.create({
    baseURL: import.meta.env.VITE_URL,
 });
 
 const useAxiosSecure = () => {
-   return instance;
+   return axiosInstance;
 };
 
 export default useAxiosSecure;

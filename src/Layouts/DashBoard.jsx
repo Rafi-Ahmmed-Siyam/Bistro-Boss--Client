@@ -1,0 +1,135 @@
+import React from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
+import { HiMenuAlt2 } from 'react-icons/hi';
+import { HiHome } from 'react-icons/hi';
+import { FaCalendarDays, FaBarsStaggered } from 'react-icons/fa6';
+import { IoWalletSharp, IoCartSharp } from 'react-icons/io5';
+import { MdReviews } from 'react-icons/md';
+import { HiCalendarDays } from 'react-icons/hi2';
+import { FaBars } from 'react-icons/fa';
+import { GiShoppingBag } from 'react-icons/gi';
+import { MdEmail } from 'react-icons/md';
+
+const DashBoard = () => {
+   const activeLinkStyle = ({ isActive }) =>
+      isActive
+         ? 'text-white text-base font-semibold'
+         : 'text-[#151515] text-base font-medium';
+   return (
+      <div className=" font-inter">
+         <div className="drawer lg:drawer-open">
+            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content ">
+               {/* Page content here */}
+               <label
+                  htmlFor="my-drawer-2"
+                  className="btn btn-square bg-transparent border-none drawer-button lg:hidden"
+               >
+                  <FaBars className="text-2xl text-[#D1A054]" />
+               </label>
+               <div>
+                  <Outlet></Outlet>
+               </div>
+            </div>
+            <div className="drawer-side ">
+               <label
+                  htmlFor="my-drawer-2"
+                  aria-label="close sidebar"
+                  className="drawer-overlay"
+               ></label>
+               <ul className="menu bg-[#D1A054] font-cinzel text-base-content min-h-full w-7/12 md:w-80 lg:w-80 lg:px-5 py-8">
+                  {/* Sidebar content here */}
+
+                  <p className="pl-2.5">
+                     <NavLink
+                        to={'/'}
+                        className=" text-[#151515]  font-semibold md:font-bold lg:font-black text-base md:text-lg lg:text-xl "
+                     >
+                        BISTRO BOSS
+                     </NavLink>
+                  </p>
+                  <p className="pl-2.5  text-[#151515] lg:block font-semibold text-base tracking-widest  mb-10">
+                     RESTAURANT
+                  </p>
+
+                  {/* NavLinks */}
+
+                  <li className="uppercase">
+                     <NavLink
+                        className={'text-[#151515] text-base font-medium '}
+                     >
+                        <HiHome className="text-xl lg:text-2xl" /> User Home
+                     </NavLink>
+                  </li>
+                  <li className="mt-2 lg:mt-3 uppercase">
+                     <NavLink
+                        className={'text-[#151515] text-base font-medium '}
+                     >
+                        <FaCalendarDays className="text-xl lg:text-xl" />{' '}
+                        reservation
+                     </NavLink>
+                  </li>
+                  <li className="mt-2 lg:mt-3 uppercase">
+                     <NavLink
+                        className={'text-[#151515] text-base font-medium '}
+                     >
+                        <IoWalletSharp className="text-xl lg:text-xl" /> payment
+                        history
+                     </NavLink>
+                  </li>
+                  <li className="mt-2 lg:mt-3 uppercase">
+                     <NavLink
+                        to={'/dashboard/cart'}
+                        className={activeLinkStyle}
+                     >
+                        <IoCartSharp className="text-2xl lg:text-2xl" /> my cart
+                     </NavLink>
+                  </li>
+                  <li className="mt-2 lg:mt-3 uppercase">
+                     <NavLink
+                        className={'text-[#151515] text-base font-medium '}
+                     >
+                        <MdReviews className="text-2xl lg:text-2xl" /> add
+                        review
+                     </NavLink>
+                  </li>
+                  <li className="mt-2 lg:mt-3 uppercase">
+                     <NavLink
+                        className={'text-[#151515] text-base font-medium '}
+                     >
+                        <HiCalendarDays className="text-2xl lg:text-2xl" /> my
+                        booking
+                     </NavLink>
+                  </li>
+
+                  <hr className="my-8 text-white" />
+
+                  <li className="uppercase">
+                     <NavLink to={'/'} className={activeLinkStyle}>
+                        <HiHome className="text-xl lg:text-2xl" />
+                        Home
+                     </NavLink>
+                  </li>
+                  <li className="mt-2 lg:mt-3 uppercase">
+                     <NavLink to={'/menu'} className={activeLinkStyle}>
+                        <FaBars className="text-xl lg:text-xl" /> menu
+                     </NavLink>
+                  </li>
+                  <li className="mt-2 lg:mt-3 uppercase">
+                     <NavLink to={'/order'} className={activeLinkStyle}>
+                        <GiShoppingBag className="text-xl lg:text-xl" /> shop
+                     </NavLink>
+                  </li>
+                  <li className="mt-2 lg:mt-3 uppercase">
+                     <NavLink to={'/contact'} className={activeLinkStyle}>
+                        <MdEmail className="text-xl lg:text-2xl" /> contact
+                     </NavLink>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   );
+};
+
+export default DashBoard;

@@ -8,17 +8,38 @@ import {
 } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
 import Swal from 'sweetalert2';
-import { axiosInstance } from '../Hooks/useAxiosSecure';
+
 import toast from 'react-hot-toast';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const ItemCard = ({ foodItem }) => {
    const navigate = useNavigate();
    const location = useLocation();
    const { name, recipe, image, category, price, _id } = foodItem || {};
    const { user } = useAuth();
+   const axiosSecure = useAxiosSecure();
+   const queryClient = useQueryClient();
 
-   const handleCart = async (food) => {
-      if (user) {
+   const { mutateAsync } = useMutation({
+      mutationFn: async (cartItem) => {
+         const { data, status } = await axiosSecure.post('/carts', cartItem);
+         return { status, data };
+      },
+      onSuccess: ({ status, data }) => {
+         queryClient.invalidateQueries({ queryKey: ['cartData'] });
+         if (status === 200)
+            return toast.success(`${name} quantity updated in your cart!`);
+         toast.success(`${name} added to your cart successfully!`);
+      },
+      onError: (err) => {
+         toast.error('❌ Failed to add to cart. Please try again.');
+         console.log(err);
+      },
+   });
+
+   const handleCart = async () => {
+      if (user && user?.email) {
          const cartItem = {
             menuId: _id,
             email: user?.email,
@@ -28,19 +49,7 @@ const ItemCard = ({ foodItem }) => {
             quantity: 1,
          };
 
-         try {
-            const { data, status } = await axiosInstance.post(
-               '/carts',
-               cartItem
-            );
-            console.log(data, status);
-            if (status === 200)
-               return toast.success(`${name} quantity updated in your cart!`);
-            toast.success(`${name} added to cart successfully!`);
-         } catch (err) {
-            toast.error('❌ Failed to add to cart. Please try again.');
-            console.log(err);
-         }
+         await mutateAsync(cartItem);
       } else {
          Swal.fire({
             title: 'Please Login First!',
@@ -96,7 +105,7 @@ const ItemCard = ({ foodItem }) => {
 
             <div className="flex justify-center items-center">
                <button
-                  onClick={() => handleCart(foodItem)}
+                  onClick={handleCart}
                   className="btn uppercase border-b-3 rounded-b-lg hover:bg-[#1F2937] bg-[#E8E8E8] border-b-[#BB8506] text-[#BB8506]"
                >
                   Add to cart

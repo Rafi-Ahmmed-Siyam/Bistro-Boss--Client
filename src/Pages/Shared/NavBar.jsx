@@ -3,15 +3,18 @@ import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import { BsCart4 } from 'react-icons/bs';
 import { MdLogout } from 'react-icons/md';
+import useCart from '../../Hooks/useCart';
 
 const NavBar = () => {
    const { user, userSignOut } = useAuth();
+   const { cart } = useCart();
+   // console.log(cart);
    const linkStyle = ({ isActive }) =>
       isActive ? 'text-[#EEFF25] font-medium' : 'text-white font-normal';
    const linkStyle2 = ({ isActive }) =>
       isActive
-         ? 'bg-amber-400 text-xs md:text-sm'
-         : 'text-black text-xs md:text-sm';
+         ? 'bg-amber-400 text-sm md:text-sm'
+         : 'text-black text-sm md:text-sm';
 
    return (
       <div>
@@ -64,16 +67,34 @@ const NavBar = () => {
                               <summary>Others</summary>
                               <ul className="py-2 px-2.5 text-black">
                                  <li>
-                                    <NavLink>Dashboard</NavLink>
+                                    <NavLink
+                                       className={linkStyle2}
+                                       to={'/dashboard'}
+                                    >
+                                       Dashboard
+                                    </NavLink>
                                  </li>
                                  <li className="block md:hidden ">
-                                    <NavLink to={'/menu'}>Our Menu</NavLink>
+                                    <NavLink
+                                       className={linkStyle2}
+                                       to={'/menu'}
+                                    >
+                                       Our Menu
+                                    </NavLink>
                                  </li>
                                  <li>
-                                    <NavLink to={'/order'}>Our Shop</NavLink>
+                                    <NavLink
+                                       className={linkStyle2}
+                                       to={'/order'}
+                                    >
+                                       Our Shop
+                                    </NavLink>
                                  </li>
                                  <li className="hidden md:hidden lg:hidden">
-                                    <NavLink to={'/contact'}>
+                                    <NavLink
+                                       className={linkStyle2}
+                                       to={'/contact'}
+                                    >
                                        Contact Us
                                     </NavLink>
                                  </li>
@@ -87,12 +108,12 @@ const NavBar = () => {
                      <>
                         {/* Cart option */}
                         <li className="relative">
-                           <span className={`mr-1.5`}>
+                           <NavLink to={'/dashboard/cart'} className={`mr-1.5`}>
                               <BsCart4 className="text-2xl text-white" />
-                              <span className="text-white text-xs bg-black font-medium px-1 text-center  rounded-full absolute left-[23px] z-50 bottom-5">
-                                 10
+                              <span className="text-white text-xs bg-black font-medium px-1.5 text-center  rounded-full absolute left-[22px] z-50 bottom-5">
+                                 {cart?.length || 0}
                               </span>
-                           </span>
+                           </NavLink>
                         </li>
                         <div className="dropdown dropdown-end ">
                            <div
@@ -113,7 +134,12 @@ const NavBar = () => {
                               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black"
                            >
                               <li>
-                                 <NavLink className={''}>Dashboard</NavLink>
+                                 <NavLink
+                                    className={linkStyle2}
+                                    to={'/dashboard'}
+                                 >
+                                    Dashboard
+                                 </NavLink>
                               </li>
                               <li className="block md:hidden lg:hidden mt-0.5">
                                  <NavLink className={linkStyle2} to={'/menu'}>
@@ -127,7 +153,7 @@ const NavBar = () => {
                               </li>
                               <li
                                  onClick={() => userSignOut()}
-                                 className="btn btn-sm  text-black mt-2 rounded-lg bg-red-700 hover:bg-red-800 border-none"
+                                 className="btn btn-sm  text-black mt-2.5 rounded-lg bg-red-700 hover:bg-red-800 border-none "
                               >
                                  <span className="text-white flex items-center">
                                     Sign Out
