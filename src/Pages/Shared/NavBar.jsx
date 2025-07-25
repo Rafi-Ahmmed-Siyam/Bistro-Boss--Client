@@ -7,8 +7,7 @@ import useCart from '../../Hooks/useCart';
 
 const NavBar = () => {
    const { user, userSignOut } = useAuth();
-   const { cart } = useCart();
-   // console.log(cart);
+   const { cartCount } = useCart();
    const linkStyle = ({ isActive }) =>
       isActive ? 'text-[#EEFF25] font-medium' : 'text-white font-normal';
    const linkStyle2 = ({ isActive }) =>
@@ -110,8 +109,8 @@ const NavBar = () => {
                         <li className="relative">
                            <NavLink to={'/dashboard/cart'} className={`mr-1.5`}>
                               <BsCart4 className="text-2xl text-white" />
-                              <span className="text-white text-xs bg-black font-medium px-1.5 text-center  rounded-full absolute left-[22px] z-50 bottom-5">
-                                 {cart?.length || 0}
+                              <span className="bg-amber-600 text-white text-xs font-medium px-1.5 text-center  rounded-full absolute left-[22px] z-50 bottom-5">
+                                 {cartCount || 0}
                               </span>
                            </NavLink>
                         </li>

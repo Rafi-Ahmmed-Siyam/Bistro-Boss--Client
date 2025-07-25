@@ -11,6 +11,7 @@ import SignUp from '../Pages/Authentication/Signup';
 import ForgotPassword from '../Pages/Authentication/ForgotPassword';
 import DashBoard from '../Layouts/DashBoard';
 import Cart from '../Pages/Dashboard/Cart/Cart';
+import PrivetRoute from './PrivetRoute';
 
 const router = createBrowserRouter(
    [
@@ -60,7 +61,11 @@ const router = createBrowserRouter(
          children: [
             {
                path: 'cart',
-               element: <Cart />,
+               element: (
+                  <PrivetRoute>
+                     <Cart />
+                  </PrivetRoute>
+               ),
             },
          ],
       },

@@ -5,14 +5,17 @@ import useAuth from './useAuth';
 const useCart = () => {
    const axiosSecure = useAxiosSecure();
    const { user } = useAuth();
-   const { data: cart = [] } = useQuery({
+
+   const { data: cart = [],isLoading } = useQuery({
       queryKey: ['cartData', user?.email],
       queryFn: async () => {
          const { data } = await axiosSecure.get(`/carts/${user?.email}`);
          return data;
       },
    });
-   return { cart };
+
+   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+   return { cart, cartCount,isLoading };
 };
 
 export default useCart;
