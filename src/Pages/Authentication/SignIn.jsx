@@ -33,18 +33,18 @@ const SignIn = () => {
    const [showPass, setShowPass] = useState(false);
    const capchaRef = useRef();
 
-   const handleSignin = (data) => {
+   const handleSignin = async (data) => {
       const { userEmail, password } = data;
-      signIn(userEmail, password)
-         .then(() => {
-            reset();
-            navigate(from, { replace: true });
-            toast.success('Sign in successful!');
-         })
-         .catch((error) => {
-            console.log(error);
-            toast.error(error?.message || 'Something went wrong!');
-         });
+
+      try {
+         await signIn(userEmail, password);
+         reset();
+         navigate(from, { replace: true });
+         toast.success('Sign in successful!');
+      } catch (err) {
+         console.log(err);
+         toast.error(err?.message || 'Something went wrong!');
+      }
    };
 
    const handleValidateCapchaValue = () => {

@@ -9,10 +9,12 @@ import useAuth from '../../Hooks/useAuth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const SignUp = () => {
    const { createUser, updateUserData } = useAuth();
    const navigate = useNavigate();
+   const axiosPublic = useAxiosPublic();
    const [showPass, setShowPass] = useState(false);
    const location = useLocation();
 
@@ -25,22 +27,28 @@ const SignUp = () => {
       formState: { errors },
    } = useForm();
 
-   const onSubmit = (data) => {
+   const onSubmit = async (data) => {
       const { userName, userEmail, photoURL, password } = data;
 
-      createUser(userEmail, password)
-         .then((result) => {
-            return updateUserData(userName, photoURL);
-         })
-         .then(() => {
+      try {
+         await createUser(userEmail, password);
+         await updateUserData(userName, photoURL);
+         // Create user Entry in the database
+         const userInfo = {
+            userName,
+            userEmail,
+         };
+         const { data } = await axiosPublic.post('/users', userInfo);
+         console.log(data);
+         if (data.insertedId) {
             reset();
             navigate(from, { replace: true });
             toast.success('Account created successfully! Welcome aboard 🎉');
-         })
-         .catch((error) => {
-            console.log(error);
-            toast.error(error?.message || 'Something went wrong!');
-         });
+         }
+      } catch (err) {
+         console.log(err);
+         toast.error(err?.message || 'Something went wrong!');
+      }
    };
 
    return (

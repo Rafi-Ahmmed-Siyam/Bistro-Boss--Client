@@ -1,20 +1,25 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { HiMenuAlt2 } from 'react-icons/hi';
 import { HiHome } from 'react-icons/hi';
-import { FaCalendarDays, FaBarsStaggered } from 'react-icons/fa6';
+import { FaCalendarDays, FaBarsStaggered, FaList } from 'react-icons/fa6';
 import { IoWalletSharp, IoCartSharp } from 'react-icons/io5';
 import { MdReviews } from 'react-icons/md';
 import { HiCalendarDays } from 'react-icons/hi2';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaUsers } from 'react-icons/fa';
 import { GiShoppingBag } from 'react-icons/gi';
 import { MdEmail } from 'react-icons/md';
+import { ImSpoonKnife } from 'react-icons/im';
+import { TfiMenuAlt } from 'react-icons/tfi';
+import { GiWhiteBook } from 'react-icons/gi';
 
 const DashBoard = () => {
    const activeLinkStyle = ({ isActive }) =>
       isActive
-         ? 'text-white text-base font-semibold'
+         ? 'text-white bg-[#18181B] text-base font-semibold'
          : 'text-[#151515] text-base font-medium';
+
+   const isaAdmin = true;
+
    return (
       <div className=" font-inter">
          <div className="drawer lg:drawer-open">
@@ -56,54 +61,134 @@ const DashBoard = () => {
 
                   {/* NavLinks */}
 
-                  <li className="uppercase">
-                     <NavLink
-                        className={'text-[#151515] text-base font-medium '}
-                     >
-                        <HiHome className="text-xl lg:text-2xl" /> User Home
-                     </NavLink>
-                  </li>
-                  <li className="mt-2 lg:mt-3 uppercase">
-                     <NavLink
-                        className={'text-[#151515] text-base font-medium '}
-                     >
-                        <FaCalendarDays className="text-xl lg:text-xl" />{' '}
-                        reservation
-                     </NavLink>
-                  </li>
-                  <li className="mt-2 lg:mt-3 uppercase">
-                     <NavLink
-                        className={'text-[#151515] text-base font-medium '}
-                     >
-                        <IoWalletSharp className="text-xl lg:text-xl" /> payment
-                        history
-                     </NavLink>
-                  </li>
-                  <li className="mt-2 lg:mt-3 uppercase">
-                     <NavLink
-                        to={'/dashboard/cart'}
-                        className={activeLinkStyle}
-                     >
-                        <IoCartSharp className="text-2xl lg:text-2xl" /> my cart
-                     </NavLink>
-                  </li>
-                  <li className="mt-2 lg:mt-3 uppercase">
-                     <NavLink
-                        className={'text-[#151515] text-base font-medium '}
-                     >
-                        <MdReviews className="text-2xl lg:text-2xl" /> add
-                        review
-                     </NavLink>
-                  </li>
-                  <li className="mt-2 lg:mt-3 uppercase">
-                     <NavLink
-                        className={'text-[#151515] text-base font-medium '}
-                     >
-                        <HiCalendarDays className="text-2xl lg:text-2xl" /> my
-                        booking
-                     </NavLink>
-                  </li>
+                  {isaAdmin ? (
+                     // Admin Links
+                     <>
+                        <li className="uppercase">
+                           <NavLink
+                              className={
+                                 'text-[#151515] text-base font-medium '
+                              }
+                           >
+                              <HiHome className="text-xl lg:text-2xl" /> Admin
+                              Home
+                           </NavLink>
+                        </li>
+                        <li className="mt-2 lg:mt-3 uppercase">
+                           <NavLink
+                              className={
+                                 'text-[#151515] text-base font-medium '
+                              }
+                           >
+                              <ImSpoonKnife className="text-xl lg:text-2xl" />{' '}
+                              add items
+                           </NavLink>
+                        </li>
+                        <li className="mt-2 lg:mt-3 uppercase">
+                           <NavLink
+                              className={
+                                 'text-[#151515] text-base font-medium '
+                              }
+                           >
+                              <TfiMenuAlt className="text-xl lg:text-xl" />{' '}
+                              Manage bookings
+                           </NavLink>
+                        </li>
+                        <li className="mt-2 lg:mt-3 uppercase">
+                           <NavLink
+                              to={'/dashboard/cart'}
+                              className={activeLinkStyle}
+                           >
+                              <GiWhiteBook className="text-2xl lg:text-2xl" />
+                              Manage bookings
+                           </NavLink>
+                        </li>
+                        <li className="mt-2 lg:mt-3 uppercase">
+                           <NavLink
+                              className={
+                                 'text-[#151515] text-base font-medium '
+                              }
+                           >
+                              <MdReviews className="text-2xl lg:text-2xl" /> add
+                              review
+                           </NavLink>
+                        </li>
+                        <li className="mt-2 lg:mt-3 uppercase">
+                           <NavLink
+                              to={'/dashboard/users'}
+                              className={activeLinkStyle}
+                           >
+                              <FaUsers className="text-2xl lg:text-2xl" /> all
+                              users
+                           </NavLink>
+                        </li>
+                     </>
+                  ) : (
+                     // Users Links
+                     <>
+                        <li className="uppercase">
+                           <NavLink
+                              className={
+                                 'text-[#151515] text-base font-medium '
+                              }
+                           >
+                              <HiHome className="text-xl lg:text-2xl" /> User
+                              Home
+                           </NavLink>
+                        </li>
+                        <li className="mt-2 lg:mt-3 uppercase">
+                           <NavLink
+                              className={
+                                 'text-[#151515] text-base font-medium '
+                              }
+                           >
+                              <FaCalendarDays className="text-xl lg:text-xl" />{' '}
+                              reservation
+                           </NavLink>
+                        </li>
+                        <li className="mt-2 lg:mt-3 uppercase">
+                           <NavLink
+                              className={
+                                 'text-[#151515] text-base font-medium '
+                              }
+                           >
+                              <IoWalletSharp className="text-xl lg:text-xl" />{' '}
+                              payment history
+                           </NavLink>
+                        </li>
+                        <li className="mt-2 lg:mt-3 uppercase">
+                           <NavLink
+                              to={'/dashboard/cart'}
+                              className={activeLinkStyle}
+                           >
+                              <IoCartSharp className="text-2xl lg:text-2xl" />{' '}
+                              my cart
+                           </NavLink>
+                        </li>
+                        <li className="mt-2 lg:mt-3 uppercase">
+                           <NavLink
+                              className={
+                                 'text-[#151515] text-base font-medium '
+                              }
+                           >
+                              <MdReviews className="text-2xl lg:text-2xl" /> add
+                              review
+                           </NavLink>
+                        </li>
+                        <li className="mt-2 lg:mt-3 uppercase">
+                           <NavLink
+                              className={
+                                 'text-[#151515] text-base font-medium '
+                              }
+                           >
+                              <HiCalendarDays className="text-2xl lg:text-2xl" />{' '}
+                              my booking
+                           </NavLink>
+                        </li>
+                     </>
+                  )}
 
+                  {/* Shared Links */}
                   <hr className="my-8 font-extrabold  text-white" />
                   {/* <div className="divider my-8 bg-white"></div> */}
 
@@ -115,7 +200,7 @@ const DashBoard = () => {
                   </li>
                   <li className="mt-2 lg:mt-3 uppercase">
                      <NavLink to={'/menu'} className={activeLinkStyle}>
-                        <FaBars className="text-xl lg:text-xl" /> menu
+                        <FaList className="text-xl lg:text-xl" /> menu
                      </NavLink>
                   </li>
                   <li className="mt-2 lg:mt-3 uppercase">

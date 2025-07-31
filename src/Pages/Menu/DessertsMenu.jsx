@@ -13,7 +13,7 @@ const DessertsMenu = () => {
             containerClass={'px-5 md:px-5 lg:px-12 py-5 md:py-0 lg:py-0'}
             hedingTextSize={'text-2xl lg:text-3xl'}
             paraTextSize={' text-sm lg:text-base'}
-            height={'h-[550px] md:h-[700px] lg:h-[550px]'}
+            height={'h-[330px] md:h-[700px] lg:h-[550px]'} //h-[300px] md:h-[700px] lg:h-[600px]
             bgImg={dessertImg}
             title={'DESSERTS'}
             subTitle={

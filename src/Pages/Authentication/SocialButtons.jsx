@@ -3,24 +3,30 @@ import { FaFacebookF, FaGithub, FaGoogle } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const SocialButtons = () => {
    const { pathname } = useLocation();
    const { googleLogin, facebookLogin, gitHubLogin } = useAuth();
+   const axiosPublic = useAxiosPublic();
    const navigate = useNavigate();
    const location = useLocation();
    const from = location.state?.from?.pathname || '/';
 
-   const handleGoogleLogin = () => {
-      googleLogin()
-         .then(() => {
-            navigate(from, { replace: true });
-            toast.success('Sign in successful!');
-         })
-         .catch((error) => {
-            console.log(error);
-            toast.error(error?.message || 'Something went wrong!');
-         });
+   const handleGoogleLogin = async () => {
+      try {
+         const result = await googleLogin();
+         const userInfo = {
+            userName: result?.user?.displayName,
+            userEmail: result?.user?.email,
+         };
+         const { data } = await axiosPublic.post('/users', userInfo);
+         navigate(from, { replace: true });
+         toast.success('Sign in successful!');
+      } catch (error) {
+         console.log(error);
+         toast.error(error?.message || 'Something went wrong!');
+      }
    };
 
    const handleFacebookLogin = () => {
@@ -35,16 +41,21 @@ const SocialButtons = () => {
          });
    };
 
-   const handleGithubLogin = () => {
-      gitHubLogin()
-         .then(() => {
-            navigate(from, { replace: true });
-            toast.success('Sign in successful!');
-         })
-         .catch((error) => {
-            console.log(error);
-            toast.error(error?.message || 'Something went wrong!');
-         });
+   const handleGithubLogin = async () => {
+      try {
+         const result = await gitHubLogin();
+         console.log(result);
+         const userInfo = {
+            userName: result?.user?.displayName,
+            userEmail: result?.user?.email,
+         };
+         const { data } = await axiosPublic.post('/users', userInfo);
+         navigate(from, { replace: true });
+         toast.success('Sign in successful!');
+      } catch (error) {
+         console.log(error);
+         toast.error(error?.message || 'Something went wrong!');
+      }
    };
 
    return (
@@ -54,8 +65,9 @@ const SocialButtons = () => {
          </p>
          <div className="flex justify-center items-center gap-8 mt-3">
             <button
+               disabled
                onClick={handleFacebookLogin}
-               className="btn btn-circle border-[#444444]"
+               className="btn btn-circle disabled:cursor-not-allowed border-[#444444]"
             >
                <FaFacebookF className="text-xl" />
             </button>

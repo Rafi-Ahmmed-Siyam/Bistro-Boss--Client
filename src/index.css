@@ -1,33 +1,35 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
 @plugin "daisyui";
 
 .font-inter {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-weight: 400;
+   font-family: 'Inter', sans-serif;
+   font-optical-sizing: auto;
+   font-style: normal;
+   font-weight: 400;
 }
 
 .font-cinzel {
-  font-family: "Cinzel", serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+   font-family: 'Cinzel', serif;
+   font-optical-sizing: auto;
+   font-style: normal;
 }
 
 .font-raleway {
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+   font-family: 'Raleway', sans-serif;
+   font-optical-sizing: auto;
+   font-style: normal;
 }
 
 .text-dark {
-  color: #151515;
+   color: #151515;
 }
 .text-para {
-  color: #737373;
+   color: #737373;
 }
 
 /* .carousel .control-dots {
@@ -41,18 +43,18 @@
 } */
 
 .carousel .thumbs {
-  display: flex;
-  justify-content: center;
+   display: flex;
+   justify-content: center;
 }
 
 @layer components {
-  /* Responsive custom heading class */
-  .custom-heading {
-    @apply text-xl md:text-2xl lg:text-3xl font-medium leading-tight;
-  }
+   /* Responsive custom heading class */
+   .custom-heading {
+      @apply text-xl md:text-2xl lg:text-3xl font-medium leading-tight;
+   }
 
-  /* Responsive custom paragraph class */
-  .custom-paragraph {
-    @apply text-xs md:text-sm lg:text-sm font-normal leading-relaxed;
-  }
+   /* Responsive custom paragraph class */
+   .custom-paragraph {
+      @apply text-xs md:text-sm lg:text-sm font-normal leading-relaxed;
+   }
 }

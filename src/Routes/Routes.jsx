@@ -10,8 +10,10 @@ import SignIn from '../Pages/Authentication/SignIn';
 import SignUp from '../Pages/Authentication/Signup';
 import ForgotPassword from '../Pages/Authentication/ForgotPassword';
 import DashBoard from '../Layouts/DashBoard';
-import Cart from '../Pages/Dashboard/Cart/Cart';
+
 import PrivetRoute from './PrivetRoute';
+import Cart from '../Pages/DashBoard/User/Cart';
+import AllUsers from '../Pages/DashBoard/Admin/AllUsers';
 
 const router = createBrowserRouter(
    [
@@ -57,15 +59,21 @@ const router = createBrowserRouter(
       // DashBoard
       {
          path: 'dashboard',
-         element: <DashBoard />,
+         element: (
+            <PrivetRoute>
+               <DashBoard />
+            </PrivetRoute>
+         ),
          children: [
             {
                path: 'cart',
-               element: (
-                  <PrivetRoute>
-                     <Cart />
-                  </PrivetRoute>
-               ),
+               element: <Cart />,
+            },
+
+            // Admin Routes
+            {
+               path: 'users',
+               element: <AllUsers />,
             },
          ],
       },
