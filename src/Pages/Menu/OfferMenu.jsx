@@ -3,8 +3,8 @@ import useMenu from '../../Hooks/useMenu';
 import MenuCategory from '../Shared/MenuCategory';
 
 const OfferMenu = () => {
-   const { menu, loading } = useMenu();
-   const offerMenu = menu.filter((item) => item.category === 'offered');
+   const { menu, isPending } = useMenu();
+   const offerMenu = menu?.filter((item) => item.category === 'offered');
 
    return (
       <div>
@@ -14,7 +14,7 @@ const OfferMenu = () => {
             menuHeading={"Don't miss "}
             menuSubHeding={"TODAY'S OFFER"}
             menuData={offerMenu}
-            loading={loading}
+            loading={isPending}
          />
       </div>
    );

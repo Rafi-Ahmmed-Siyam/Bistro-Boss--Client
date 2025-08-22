@@ -9,23 +9,26 @@ import { Tooltip } from 'flowbite-react';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { FaUserShield } from 'react-icons/fa6';
+import { Helmet } from 'react-helmet-async';
 
 const AllUsers = () => {
-   const axiosSecure = useAxiosSecure();
    const queryClient = useQueryClient();
-
+   const axiosSecure = useAxiosSecure();
+   // Get all users data from Database
    const {
       data: users,
       isLoading,
+      isError,
       refetch,
    } = useQuery({
       queryFn: async () => {
-         const { data } = await axiosSecure.get('users');
+         const { data } = await axiosSecure.get('/users');
          return data;
       },
       queryKey: ['users'],
    });
 
+   // For delete user and change user role
    const { mutateAsync } = useMutation({
       mutationFn: async (id) => {
          const { data } = await axiosSecure.delete(`/users/${id}`);
@@ -46,7 +49,7 @@ const AllUsers = () => {
    });
 
    const handleDeleteUser = async (user) => {
-      console.log(user._id);
+      // console.log(user._id);
       Swal.fire({
          title: `Delete ${user?.userName || 'This User'}?`,
          text: 'Are you sure you want to permanently remove this user?',
@@ -124,6 +127,9 @@ const AllUsers = () => {
 
    return (
       <section className="my-1.5 lg:my-11 ">
+         <Helmet>
+            <title>Bistro Boss | All Users</title>
+         </Helmet>
          <SectionTitle subHeading={'How many??'} heading={'MANAGE ALL USERS'} />
 
          <div className="max-w-5xl mx-auto px-3.5 lg:px-0">
@@ -148,7 +154,7 @@ const AllUsers = () => {
                      </thead>
 
                      <tbody>
-                        {isLoading ? (
+                        {isLoading || isError ? (
                            <tr>
                               <td colSpan={5} className="text-center py-6">
                                  <Spinner />
@@ -158,19 +164,19 @@ const AllUsers = () => {
                            <>
                               {users.map((user, index) => (
                                  <tr key={user._id}>
-                                    <th className=" text-[#151515] text-center text-sm lg:text-base">
+                                    <th className=" text-[#151515] text-center text-sm ">
                                        {index + 1}
                                     </th>
-                                    <td className="text-[#737373] text-center text-sm lg:text-base">
+                                    <td className="text-[#737373] text-center text-sm ">
                                        {user?.userName}
                                     </td>
-                                    <td className="text-[#737373] text-center text-sm lg:text-base">
+                                    <td className="text-[#737373] text-center text-sm ">
                                        {user?.userEmail}
                                     </td>
 
                                     <td className=" text-center">
                                        {user.role ? (
-                                          <span className="badge bg-[#1E40AF] text-white ">
+                                          <span className="badge bg-[#1E40AF] text-white text-sm">
                                              <FaUserShield className="text-lg" />
                                              Admin
                                           </span>

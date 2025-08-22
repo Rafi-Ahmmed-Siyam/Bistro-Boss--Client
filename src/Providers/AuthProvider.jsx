@@ -66,15 +66,20 @@ const AuthProvider = ({ children }) => {
          if (currentUser) {
             const userInfo = { email: currentUser.email };
             const { data } = await axiosPublic.post('/jwt', userInfo);
-            console.log(data.token);
+            if (data.token) {
+               // console.log(data.token);
+               localStorage.setItem('access-token', data.token);
+            }
+
             setLoading(false);
             setUser(currentUser);
 
             console.log('user=====>', currentUser);
          } else {
+            localStorage.removeItem('access-token');
             setLoading(false);
             setUser(null);
-            console.log('User SignOut');
+            console.log('User Signout');
          }
       });
       return () => unsubscribe();

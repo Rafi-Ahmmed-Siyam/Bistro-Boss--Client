@@ -11,6 +11,7 @@ import { MdEmail } from 'react-icons/md';
 import { ImSpoonKnife } from 'react-icons/im';
 import { TfiMenuAlt } from 'react-icons/tfi';
 import { GiWhiteBook } from 'react-icons/gi';
+import useAdmin from '../Hooks/useAdmin';
 
 const DashBoard = () => {
    const activeLinkStyle = ({ isActive }) =>
@@ -18,7 +19,7 @@ const DashBoard = () => {
          ? 'text-white bg-[#18181B] text-base font-semibold'
          : 'text-[#151515] text-base font-medium';
 
-   const isaAdmin = true;
+   const { isAdmin } = useAdmin();
 
    return (
       <div className=" font-inter">
@@ -61,7 +62,7 @@ const DashBoard = () => {
 
                   {/* NavLinks */}
 
-                  {isaAdmin ? (
+                  {isAdmin ? (
                      // Admin Links
                      <>
                         <li className="uppercase">

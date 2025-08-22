@@ -14,6 +14,7 @@ import DashBoard from '../Layouts/DashBoard';
 import PrivetRoute from './PrivetRoute';
 import Cart from '../Pages/DashBoard/User/Cart';
 import AllUsers from '../Pages/DashBoard/Admin/AllUsers';
+import AdminRoute from './AdminRoute';
 
 const router = createBrowserRouter(
    [
@@ -73,7 +74,11 @@ const router = createBrowserRouter(
             // Admin Routes
             {
                path: 'users',
-               element: <AllUsers />,
+               element: (
+                  <AdminRoute>
+                     <AllUsers />
+                  </AdminRoute>
+               ),
             },
          ],
       },

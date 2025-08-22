@@ -4,8 +4,8 @@ import MenuCategory from '../Shared/MenuCategory';
 import useMenu from '../../Hooks/useMenu';
 
 const PopularMenu = () => {
-   const { menu, loading } = useMenu();
-   const popularMenu = menu.filter((item) => item.category === 'popular');
+   const { menu, isPending } = useMenu();
+   const popularMenu = menu?.filter((item) => item.category === 'popular');
 
    return (
       <div>
@@ -15,7 +15,7 @@ const PopularMenu = () => {
             menuSubHeding={'FROM OUR MENU'}
             menuHeading={'Check it out'}
             menuData={popularMenu}
-            loading={loading}
+            loading={isPending}
          />
       </div>
    );

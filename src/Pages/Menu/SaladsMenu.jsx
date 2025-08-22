@@ -5,8 +5,8 @@ import MenuCategory from '../Shared/MenuCategory';
 import saladImg from '../../assets/menu/salad-bg.jpg';
 
 const SaladsMenu = () => {
-   const { menu, loading } = useMenu();
-   const saladMenu = menu.filter((item) => item.category === 'salad');
+   const { menu, isPending } = useMenu();
+   const saladMenu = menu?.filter((item) => item.category === 'salad');
 
    return (
       <div>
@@ -28,7 +28,7 @@ const SaladsMenu = () => {
                hiddenClass={'hidden'}
                btnContent={'ORDER YOUR FAVOURITE FOOD'}
                menuData={saladMenu}
-               loading={loading}
+               loading={isPending}
             />
          </div>
       </div>

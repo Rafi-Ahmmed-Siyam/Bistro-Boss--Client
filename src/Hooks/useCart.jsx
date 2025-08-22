@@ -6,8 +6,13 @@ const useCart = () => {
    const axiosSecure = useAxiosSecure();
    const { user } = useAuth();
 
-   const { data: cart = [],isLoading } = useQuery({
+   const {
+      data: cart = [],
+      isPending,
+      isError,
+   } = useQuery({
       queryKey: ['cartData', user?.email],
+      enabled: !!user?.email,
       queryFn: async () => {
          const { data } = await axiosSecure.get(`/carts/${user?.email}`);
          return data;
@@ -15,7 +20,7 @@ const useCart = () => {
    });
 
    const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-   return { cart, cartCount,isLoading };
+   return { cart, cartCount, isPending, isError };
 };
 
 export default useCart;

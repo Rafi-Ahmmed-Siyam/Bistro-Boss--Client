@@ -5,8 +5,8 @@ import useMenu from '../../Hooks/useMenu';
 import MenuCategory from '../Shared/MenuCategory';
 
 const DessertsMenu = () => {
-   const { menu, loading } = useMenu();
-   const dessertMenu = menu.filter((item) => item.category === 'dessert');
+   const { menu, isPending } = useMenu();
+   const dessertMenu = menu?.filter((item) => item.category === 'dessert');
    return (
       <div>
          <Cover
@@ -27,7 +27,7 @@ const DessertsMenu = () => {
                hiddenClass={'hidden'}
                btnContent={'ORDER YOUR FAVOURITE FOOD'}
                menuData={dessertMenu}
-               loading={loading}
+               loading={isPending}
             />
          </div>
       </div>

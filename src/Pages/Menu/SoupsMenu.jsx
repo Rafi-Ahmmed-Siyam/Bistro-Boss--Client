@@ -6,8 +6,8 @@ import Cover from '../Shared/Cover';
 import MenuCategory from '../Shared/MenuCategory';
 
 const SoupsMenu = () => {
-   const { menu, loading } = useMenu();
-   const soupMenu = menu.filter((item) => item.category === 'soup');
+   const { menu, isPending } = useMenu();
+   const soupMenu = menu?.filter((item) => item.category === 'soup');
 
    return (
       <div className="mb-24">
@@ -29,7 +29,7 @@ const SoupsMenu = () => {
                hiddenClass={'hidden'}
                btnContent={'ORDER YOUR FAVOURITE FOOD'}
                menuData={soupMenu}
-               loading={loading}
+               loading={isPending}
             />
          </div>
       </div>

@@ -11,9 +11,10 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Cart = () => {
-   const { cart, cartCount, isLoading } = useCart();
+   const { cart, cartCount, isPending, isError } = useCart();
 
    const { user } = useAuth();
    const axiosSecure = useAxiosSecure();
@@ -86,6 +87,9 @@ const Cart = () => {
 
    return (
       <section className="my-1.5 lg:my-11">
+         <Helmet>
+            <title>Bistro Boss | Cart</title>
+         </Helmet>
          <SectionTitle subHeading={'My Cart'} heading={'WANNA ADD MORE?'} />
 
          {/* Payment section */}
@@ -128,7 +132,7 @@ const Cart = () => {
          ) : (
             <div className="max-w-4xl mx-3 md:mx-5 lg:mx-auto mt-3.5">
                <div className="space-y-4 ">
-                  {isLoading ? (
+                  {isPending || isError ? (
                      <>
                         <Spinner />
                      </>
