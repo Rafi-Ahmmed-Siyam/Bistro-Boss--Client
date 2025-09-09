@@ -15,6 +15,9 @@ import PrivetRoute from './PrivetRoute';
 import Cart from '../Pages/DashBoard/User/Cart';
 import AllUsers from '../Pages/DashBoard/Admin/AllUsers';
 import AdminRoute from './AdminRoute';
+import AddItems from '../Pages/DashBoard/Admin/AddItems';
+import ManageItems from '../Pages/DashBoard/Admin/ManageItems';
+import UpdateItem from '../Pages/DashBoard/Admin/UpdateItem';
 
 const router = createBrowserRouter(
    [
@@ -79,6 +82,32 @@ const router = createBrowserRouter(
                      <AllUsers />
                   </AdminRoute>
                ),
+            },
+            {
+               path: 'addItems',
+               element: (
+                  <AdminRoute>
+                     <AddItems />
+                  </AdminRoute>
+               ),
+            },
+            {
+               path: 'manageItems',
+               element: (
+                  <AdminRoute>
+                     <ManageItems />
+                  </AdminRoute>
+               ),
+            },
+            {
+               path: 'updateItem/:id',
+               element: (
+                  <AdminRoute>
+                     <UpdateItem />
+                  </AdminRoute>
+               ),
+               loader: ({ params }) =>
+                  fetch(`${import.meta.env.VITE_URL}/menu/${params.id}`),
             },
          ],
       },

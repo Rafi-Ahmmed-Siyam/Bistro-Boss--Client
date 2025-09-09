@@ -4,17 +4,20 @@ import { useQuery } from '@tanstack/react-query';
 const useMenu = () => {
    const axiosPublic = useAxiosPublic();
 
-   const { data: menu, isPending } = useQuery({
+   const {
+      data: menu,
+      isPending,
+      isError,
+      refetch,
+   } = useQuery({
       queryKey: ['menuData'],
       queryFn: async () => {
-         const { data } = await axiosPublic.get(
-            `${import.meta.env.VITE_URL}/menu`
-         );
+         const { data } = await axiosPublic.get(`/menu`);
          return data;
       },
    });
 
-   return { menu, isPending };
+   return { menu, isPending, refetch };
 };
 
 export default useMenu;

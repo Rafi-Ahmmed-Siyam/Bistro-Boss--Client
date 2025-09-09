@@ -69,7 +69,7 @@ const AllUsers = () => {
    };
 
    const handleSetAdmin = async (user) => {
-      console.log(user._id);
+      // console.log(user._id);
 
       Swal.fire({
          title: `Make ${user?.userName || 'this user'} an Admin?`,
@@ -132,7 +132,7 @@ const AllUsers = () => {
          </Helmet>
          <SectionTitle subHeading={'How many??'} heading={'MANAGE ALL USERS'} />
 
-         <div className="max-w-5xl mx-auto px-3.5 lg:px-0">
+         <div className="max-w-4xl mx-auto px-3.5 lg:px-0">
             <p className="text-[#151515]  text-lg md:text-lg lg:text-2xl font-bold font-cinzel">
                Total Users:{' '}
                <span className="font-semibold">{users?.length || 0}</span>
