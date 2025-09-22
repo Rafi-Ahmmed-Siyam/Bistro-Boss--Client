@@ -18,6 +18,8 @@ import AdminRoute from './AdminRoute';
 import AddItems from '../Pages/DashBoard/Admin/AddItems';
 import ManageItems from '../Pages/DashBoard/Admin/ManageItems';
 import UpdateItem from '../Pages/DashBoard/Admin/UpdateItem';
+import Payment from '../Pages/DashBoard/User/Payments/Payment';
+import PaymentHistory from '../Pages/DashBoard/User/PaymentHistory';
 
 const router = createBrowserRouter(
    [
@@ -71,7 +73,27 @@ const router = createBrowserRouter(
          children: [
             {
                path: 'cart',
-               element: <Cart />,
+               element: (
+                  <PrivetRoute>
+                     <Cart />
+                  </PrivetRoute>
+               ),
+            },
+            {
+               path: 'payment',
+               element: (
+                  <PrivetRoute>
+                     <Payment />
+                  </PrivetRoute>
+               ),
+            },
+            {
+               path: 'paymentHistory',
+               element: (
+                  <PrivetRoute>
+                     <PaymentHistory />
+                  </PrivetRoute>
+               ),
             },
 
             // Admin Routes

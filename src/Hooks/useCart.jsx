@@ -10,6 +10,7 @@ const useCart = () => {
       data: cart = [],
       isPending,
       isError,
+      refetch
    } = useQuery({
       queryKey: ['cartData', user?.email],
       enabled: !!user?.email,
@@ -20,7 +21,10 @@ const useCart = () => {
    });
 
    const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-   return { cart, cartCount, isPending, isError };
+   const totalPrice = cart.reduce((initValue, item) => {
+      return initValue + item.price * item.quantity;
+   }, 0);
+   return { cart, cartCount, isPending, totalPrice, isError,refetch };
 };
 
 export default useCart;

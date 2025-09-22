@@ -22,6 +22,7 @@ const Cart = () => {
    const totalPrice = cart.reduce((initValue, item) => {
       return initValue + item.price * item.quantity;
    }, 0);
+   // console.log('cart page ', totalPrice);
 
    const { mutateAsync } = useMutation({
       mutationFn: async (updateData) => {
@@ -43,23 +44,23 @@ const Cart = () => {
       },
    });
 
-   const handleIncrease = async (id) => {
-      const updateData = {
-         itemId: id,
-         email: user?.email,
-         number: 1,
-      };
-      await mutateAsync(updateData);
-   };
+   // const handleIncrease = async (id) => {
+   //    const updateData = {
+   //       itemId: id,
+   //       email: user?.email,
+   //       number: 1,
+   //    };
+   //    await mutateAsync(updateData);
+   // };
 
-   const handleDecrease = async (id) => {
-      const updateData = {
-         itemId: id,
-         email: user?.email,
-         number: -1,
-      };
-      await mutateAsync(updateData);
-   };
+   // const handleDecrease = async (id) => {
+   //    const updateData = {
+   //       itemId: id,
+   //       email: user?.email,
+   //       number: -1,
+   //    };
+   //    await mutateAsync(updateData);
+   // };
 
    const handleDeleteCart = async (id) => {
       const updateData = {
@@ -105,8 +106,11 @@ const Cart = () => {
                      ${totalPrice.toFixed(1)}
                   </span>
                </p>
-               <button className="btn bg-[#D1A054] hover:bg-[#b98636] text-white">
-                  Pay
+               <button
+                  disabled={!cart.length}
+                  className="btn bg-[#D1A054] hover:bg-[#b98636] text-white"
+               >
+                  <Link to={'/dashboard/payment'}>Pay</Link>
                </button>
             </div>
          </div>
@@ -162,7 +166,7 @@ const Cart = () => {
                            </div>
 
                            <div className=" flex items-center justify-between gap-16 lg:gap-28">
-                              <div className="flex items-center gap-2 ">
+                              {/* <div className="flex items-center gap-2 ">
                                  <button
                                     onClick={() => handleDecrease(item._id)}
                                     disabled={item.quantity === 1}
@@ -179,7 +183,7 @@ const Cart = () => {
                                  >
                                     <FaPlus className="text-black" />
                                  </button>
-                              </div>
+                              </div> */}
                               <button
                                  onClick={() => handleDeleteCart(item._id)}
                                  className="btn btn-square bg-[#B91C1C] rounded-md text-white hover:bg-red-600"
