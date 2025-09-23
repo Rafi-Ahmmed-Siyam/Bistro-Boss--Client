@@ -69,10 +69,10 @@ const AuthProvider = ({ children }) => {
             if (data.token) {
                // console.log(data.token);
                localStorage.setItem('access-token', data.token);
-            }
 
-            setLoading(false);
-            setUser(currentUser);
+               setLoading(false);
+               setUser(currentUser);
+            }
 
             console.log('user=====>', currentUser);
          } else {

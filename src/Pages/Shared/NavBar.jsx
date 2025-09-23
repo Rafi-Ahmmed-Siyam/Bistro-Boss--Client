@@ -4,9 +4,11 @@ import useAuth from '../../Hooks/useAuth';
 import { BsCart4 } from 'react-icons/bs';
 import { MdLogout } from 'react-icons/md';
 import useCart from '../../Hooks/useCart';
+import useAdmin from '../../Hooks/useAdmin';
 
 const NavBar = () => {
    const { user, userSignOut } = useAuth();
+   const { isAdmin } = useAdmin();
    const { cartCount } = useCart();
    const linkStyle = ({ isActive }) =>
       isActive ? 'text-[#EEFF25] font-medium' : 'text-white font-normal';
@@ -65,14 +67,26 @@ const NavBar = () => {
                            <details>
                               <summary>Others</summary>
                               <ul className="py-2 px-2.5 text-black">
-                                 <li>
-                                    <NavLink
-                                       className={linkStyle2}
-                                       to={'/dashboard'}
-                                    >
-                                       Dashboard
-                                    </NavLink>
-                                 </li>
+                                 {user && (
+                                    <li>
+                                       <NavLink
+                                          className={linkStyle2}
+                                          to={'/dashboard/userHome'}
+                                       >
+                                          Dashboard
+                                       </NavLink>
+                                    </li>
+                                 )}
+                                 {isAdmin && (
+                                    <li>
+                                       <NavLink
+                                          className={linkStyle2}
+                                          to={'/dashboard/adminHome'}
+                                       >
+                                          Dashboard
+                                       </NavLink>
+                                    </li>
+                                 )}
                                  <li className="block md:hidden ">
                                     <NavLink
                                        className={linkStyle2}
@@ -124,7 +138,10 @@ const NavBar = () => {
                                  <img
                                     alt="User Photo"
                                     referrerPolicy="no-referrer"
-                                    src={user?.photoURL}
+                                    src={
+                                       user?.photoURL ||
+                                       'https://i.ibb.co.com/0R2DNb1P/user-1.png'
+                                    }
                                  />
                               </div>
                            </div>
@@ -132,14 +149,26 @@ const NavBar = () => {
                               tabIndex={0}
                               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black"
                            >
-                              <li>
-                                 <NavLink
-                                    className={linkStyle2}
-                                    to={'/dashboard'}
-                                 >
-                                    Dashboard
-                                 </NavLink>
-                              </li>
+                              {isAdmin && user && (
+                                 <li>
+                                    <NavLink
+                                       className={linkStyle2}
+                                       to={'/dashboard/adminHome'}
+                                    >
+                                       Dashboard
+                                    </NavLink>
+                                 </li>
+                              )}
+                              {!isAdmin && user && (
+                                 <li>
+                                    <NavLink
+                                       className={linkStyle2}
+                                       to={'/dashboard/userHome'}
+                                    >
+                                       Dashboard
+                                    </NavLink>
+                                 </li>
+                              )}
                               <li className="block md:hidden lg:hidden mt-0.5">
                                  <NavLink className={linkStyle2} to={'/menu'}>
                                     Our Menu

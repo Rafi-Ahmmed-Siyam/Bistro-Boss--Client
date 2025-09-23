@@ -5,11 +5,14 @@ import SocialButtons from './SocialButtons';
 import { HiMiniEye, HiMiniEyeSlash } from 'react-icons/hi2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CgDanger } from 'react-icons/cg';
+import { RxCross2 } from 'react-icons/rx';
 import useAuth from '../../Hooks/useAuth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import { IoMdClose } from 'react-icons/io';
+import { uploadImage } from '../../Utilities';
 
 const SignUp = () => {
    const { createUser, updateUserData } = useAuth();
@@ -28,9 +31,18 @@ const SignUp = () => {
    } = useForm();
 
    const onSubmit = async (data) => {
-      const { userName, userEmail, photoURL, password } = data;
+      const { userName, userEmail, photo, password } = data;
+      // console.log(data);
 
       try {
+         let photoURL = '';
+
+         if (photo && photo.length > 0) {
+            const imgInfo = await uploadImage(photo);
+            photoURL = imgInfo.url;
+            // console.log('url var', imgUrl);
+         }
+
          await createUser(userEmail, password);
          await updateUserData(userName, photoURL);
          // Create user Entry in the database
@@ -66,6 +78,14 @@ const SignUp = () => {
             >
                {/* Left Form */}
                <div className="w-full lg:w-1/2">
+                  <div className="flex justify-end ">
+                     <Link
+                        to={'/'}
+                        className="btn btn-sm btn-circle bg-[#D1A054]"
+                     >
+                        <IoMdClose className="text-lg font-medium" />
+                     </Link>
+                  </div>
                   <h2 className="text-center font-extrabold text-2xl lg:text-3xl text-[#151515] mb-3">
                      Sign Up
                   </h2>
@@ -111,16 +131,24 @@ const SignUp = () => {
                      </div>
                      {/* photo url */}
                      <div className="mt-2.5">
-                        <label className="label text-base font-semibold mb-2.5 text-[#444444]">
+                        <label className="label text-base font-semibold mb-2 text-[#444444]">
                            Photo URL
                         </label>
-                        <input
+                        {/* <input
                            {...register('photoURL')}
                            name="photoURL"
                            type="url"
                            className="bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full py-4 px-5"
                            placeholder="Enter your Photo URL"
-                        />
+                        /> */}
+
+                        <fieldset className="fieldset">
+                           <input
+                              {...register('photo')}
+                              type="file"
+                              className="file-input file-input-lg file-input-ghost bg-white border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500   w-full "
+                           />
+                        </fieldset>
                      </div>
 
                      {/* Password */}

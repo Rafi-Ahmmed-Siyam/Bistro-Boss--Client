@@ -14,6 +14,7 @@ import { Helmet } from 'react-helmet-async';
 import useAuth from '../../Hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { IoMdClose } from 'react-icons/io';
 
 const SignIn = () => {
    const { signIn } = useAuth();
@@ -84,6 +85,14 @@ const SignIn = () => {
 
                {/* Right Form */}
                <div className="w-full lg:w-1/2">
+                  <div className="flex justify-end ">
+                     <Link
+                        to={'/'}
+                        className="btn btn-sm btn-circle bg-[#D1A054]"
+                     >
+                        <IoMdClose className="text-lg font-medium" />
+                     </Link>
+                  </div>
                   <h2 className="text-center font-extrabold text-2xl lg:text-3xl text-[#151515] mb-3">
                      Login
                   </h2>

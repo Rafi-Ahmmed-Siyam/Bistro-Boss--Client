@@ -13,8 +13,10 @@ import { TfiMenuAlt } from 'react-icons/tfi';
 import { GiWhiteBook } from 'react-icons/gi';
 import useAdmin from '../Hooks/useAdmin';
 import Spinner from '../Components/Spinner';
+import useAuth from '../Hooks/useAuth';
 
 const DashBoard = () => {
+   const { user } = useAuth();
    const activeLinkStyle = ({ isActive }) =>
       isActive
          ? 'text-white bg-[#18181B] text-base font-medium'
@@ -81,9 +83,8 @@ const DashBoard = () => {
                            <>
                               <li className="uppercase">
                                  <NavLink
-                                    className={
-                                       'text-[#151515] text-base font-medium '
-                                    }
+                                    to={'/dashboard/adminHome'}
+                                    className={activeLinkStyle}
                                  >
                                     <HiHome className="text-xl lg:text-2xl" />{' '}
                                     Admin Home
@@ -135,15 +136,32 @@ const DashBoard = () => {
                                     all users
                                  </NavLink>
                               </li>
+                              <li className="mt-2 lg:mt-3 uppercase">
+                                 <NavLink
+                                    to={'/dashboard/payment'}
+                                    className={activeLinkStyle}
+                                 >
+                                    <FaCalendarDays className="text-xl lg:text-xl" />{' '}
+                                    Payment
+                                 </NavLink>
+                              </li>
+                              <li className="mt-2 lg:mt-3 uppercase">
+                                 <NavLink
+                                    to={'/dashboard/paymentHistory'}
+                                    className={activeLinkStyle}
+                                 >
+                                    <IoWalletSharp className="text-xl lg:text-xl" />{' '}
+                                    payment history
+                                 </NavLink>
+                              </li>
                            </>
                         ) : (
                            // Users Links
                            <>
                               <li className="uppercase">
                                  <NavLink
-                                    className={
-                                       'text-[#151515] text-base font-medium '
-                                    }
+                                    to={'/dashboard/userHome'}
+                                    className={activeLinkStyle}
                                  >
                                     <HiHome className="text-xl lg:text-2xl" />{' '}
                                     User Home
