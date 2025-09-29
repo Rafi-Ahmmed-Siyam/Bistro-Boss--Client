@@ -88,7 +88,7 @@ const AllUsers = () => {
                const { data } = await axiosSecure.patch(
                   `users/admin/${user._id}`
                );
-               console.log(data);
+               // console.log(data);
 
                if (data?.modifiedCount > 0) {
                   refetch();
@@ -111,7 +111,7 @@ const AllUsers = () => {
                   });
                }
             } catch (error) {
-               console.log(error);
+               // console.log(error);
                Swal.fire({
                   icon: 'error',
                   title: 'Failed to make admin',

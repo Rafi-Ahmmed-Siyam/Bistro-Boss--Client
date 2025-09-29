@@ -9,6 +9,6 @@ export const uploadImage = async (imgFile) => {
    const { data } = await axiosPublic.post(image_hosting_API, imageFile, {
       headers: { 'Content-Type': 'multipart/form-data' },
    });
-   console.log(data);
+   // console.log(data);
    return data.data;
 };

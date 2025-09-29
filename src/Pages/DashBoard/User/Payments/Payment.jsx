@@ -1,9 +1,9 @@
 import React from 'react';
 import SectionTitle from '../../../../Components/SectionTitle';
+import CheckoutForm from './CheckoutForm';
 import { Helmet } from 'react-helmet-async';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import CheckOutForm from './CheckOutForm';
 
 // TODO: Add publishable key
 const stripe_promise = loadStripe(import.meta.env.VITE_PK);
@@ -20,7 +20,7 @@ const Payment = () => {
                </h2>
                <div>
                   <Elements stripe={stripe_promise}>
-                     <CheckOutForm />
+                     <CheckoutForm />
                   </Elements>
                </div>
             </div>

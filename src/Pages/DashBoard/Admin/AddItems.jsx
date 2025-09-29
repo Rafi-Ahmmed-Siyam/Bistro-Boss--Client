@@ -27,12 +27,12 @@ const AddItems = () => {
    const onSubmit = async (fromData) => {
       setLoading(true);
       const imageFile = { image: fromData.image[0] };
-      console.log(fromData);
+      // console.log(fromData);
       const { data } = await axiosPublic.post(image_hosting_API, imageFile, {
          headers: { 'Content-Type': 'multipart/form-data' },
       });
 
-      console.log(data.data.url);
+      // console.log(data.data.url);
       if (data.success) {
          const menuItem = {
             name: fromData.recipeName,
@@ -41,9 +41,9 @@ const AddItems = () => {
             recipe: fromData.details,
             image: data.data.url,
          };
-         console.log(menuItem);
+         // console.log(menuItem);
          const { data: res } = await axiosSecure.post('/menu', menuItem);
-         console.log(res);
+         // console.log(res);
          if (res.insertedId) {
             Swal.fire({
                position: 'center',

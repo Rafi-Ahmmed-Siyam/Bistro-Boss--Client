@@ -15,7 +15,7 @@ import useAuth from '../../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-const CheckOutForm = () => {
+const CheckoutForm = () => {
    const stripe = useStripe();
    const elements = useElements();
    const axiosSecure = useAxiosSecure();
@@ -34,7 +34,7 @@ const CheckOutForm = () => {
       );
       setPrice(totalPrice);
    }, [cart]);
-   console.log(price);
+   // console.log(price);
 
    const payment = async () => {
       const { data } = await axiosSecure.post('/create/create-payment-intent', {
@@ -49,7 +49,7 @@ const CheckOutForm = () => {
       }
    }, [price]);
 
-   console.log(clientSecret);
+   // console.log(clientSecret);
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -67,10 +67,10 @@ const CheckOutForm = () => {
          card,
       });
       if (error) {
-         console.log('payment Error', error);
+         // console.log('payment Error', error);
          toast.error(error.message);
       } else {
-         console.log('payment', paymentMethod);
+         // console.log('payment', paymentMethod);
       }
 
       // Confirm Payment
@@ -88,12 +88,12 @@ const CheckOutForm = () => {
       if (confirmError) {
          setLoading(false);
          toast.error('Something went wrong');
-         console.log(confirmError);
+         // console.log(confirmError);
       } else {
          setLoading(false);
 
          card.clear();
-         console.log(paymentIntent);
+         // console.log(paymentIntent);
          if (paymentIntent.status == 'succeeded') {
             Swal.fire({
                position: 'center',
@@ -122,7 +122,7 @@ const CheckOutForm = () => {
             };
 
             const { data } = await axiosSecure.post('/payments', payment);
-            console.log('payment saved', data);
+            // console.log('payment saved', data);
             if (data?.deleteResult?.insertedId) {
                Swal.fire({
                   position: 'center',
@@ -138,8 +138,6 @@ const CheckOutForm = () => {
                      title: 'text-lg font-semibold',
                   },
                });
-
-               
             }
             refetch();
             navigate('/dashboard/paymentHistory');
@@ -182,4 +180,4 @@ const CheckOutForm = () => {
    );
 };
 
-export default CheckOutForm;
+export default CheckoutForm;

@@ -51,14 +51,14 @@ const SignUp = () => {
             userEmail,
          };
          const { data } = await axiosPublic.post('/users', userInfo);
-         console.log(data);
+         // console.log(data);
          if (data.insertedId) {
             reset();
             navigate(from, { replace: true });
             toast.success('Account created successfully! Welcome aboard 🎉');
          }
       } catch (err) {
-         console.log(err);
+         // console.log(err);
          toast.error(err?.message || 'Something went wrong!');
       }
    };

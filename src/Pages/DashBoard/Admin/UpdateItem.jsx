@@ -30,7 +30,7 @@ const UpdateItem = () => {
       // console.log(updateData);
       try {
          let imgUrl = image;
-         console.log('initial', imgUrl);
+         // console.log('initial', imgUrl);
          if (updateData.image && updateData.image.length > 0) {
             const imgInfo = await uploadImage(updateData.image);
             imgUrl = imgInfo.url;
@@ -44,9 +44,9 @@ const UpdateItem = () => {
             price: parseFloat(updateData.price),
          };
 
-         console.log(updatedItem);
+         // console.log(updatedItem);
          const { data } = await axiosSecure.patch(`/menu/${id}`, updatedItem);
-         console.log(data);
+         // console.log(data);
          if (data.modifiedCount > 0) {
             Swal.fire({
                position: 'center',

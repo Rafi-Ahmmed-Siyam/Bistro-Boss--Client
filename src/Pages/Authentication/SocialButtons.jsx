@@ -24,7 +24,7 @@ const SocialButtons = () => {
          navigate(from, { replace: true });
          toast.success('Sign in successful!');
       } catch (error) {
-         console.log(error);
+         // console.log(error);
          toast.error(error?.message || 'Something went wrong!');
       }
    };
@@ -36,7 +36,7 @@ const SocialButtons = () => {
             toast.success('Sign in successful!');
          })
          .catch((error) => {
-            console.log(error);
+            // console.log(error);
             toast.error(error?.message || 'Something went wrong!');
          });
    };
@@ -44,7 +44,7 @@ const SocialButtons = () => {
    const handleGithubLogin = async () => {
       try {
          const result = await gitHubLogin();
-         console.log(result);
+         // console.log(result);
          const userInfo = {
             userName: result?.user?.displayName,
             userEmail: result?.user?.email,
@@ -53,7 +53,7 @@ const SocialButtons = () => {
          navigate(from, { replace: true });
          toast.success('Sign in successful!');
       } catch (error) {
-         console.log(error);
+         // console.log(error);
          toast.error(error?.message || 'Something went wrong!');
       }
    };

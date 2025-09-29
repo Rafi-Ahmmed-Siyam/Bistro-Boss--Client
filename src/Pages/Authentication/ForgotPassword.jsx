@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import bistroBossLogo from '../../assets/icon/logo-Bistro-Boss.png';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '../../Firebase/Firebase.config';
+import { auth } from '../../Firebase/firebase.config';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ const ForgotPassword = () => {
 
    const handleForGotPass = (data) => {
       const { email } = data;
-      console.log(email);
+      // console.log(email);
 
       sendPasswordResetEmail(auth, email)
          .then(() => {

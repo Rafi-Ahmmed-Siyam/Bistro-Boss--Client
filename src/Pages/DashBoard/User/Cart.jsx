@@ -37,10 +37,10 @@ const Cart = () => {
          )
             toast.success(result.message);
 
-         console.log(result.message);
+         // console.log(result.message);
       },
       onError: (err) => {
-         console.log(err);
+         // console.log(err);
       },
    });
 

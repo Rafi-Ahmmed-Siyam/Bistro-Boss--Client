@@ -10,7 +10,7 @@ import {
    updateProfile,
 } from 'firebase/auth';
 import { createContext, useEffect, useState } from 'react';
-import { auth } from '../Firebase/Firebase.config';
+import { auth } from '../Firebase/firebase.config';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 export const AuthContext = createContext(null);
@@ -74,12 +74,12 @@ const AuthProvider = ({ children }) => {
                setUser(currentUser);
             }
 
-            console.log('user=====>', currentUser);
+            // console.log('user=====>', currentUser);
          } else {
             localStorage.removeItem('access-token');
             setLoading(false);
             setUser(null);
-            console.log('User Signout');
+            // console.log('User Signout');
          }
       });
       return () => unsubscribe();
